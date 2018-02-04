@@ -128,10 +128,8 @@
             </div>
     </div>
 </template>
-
-
-
 <script>
+  import routers from '../index.js';
   export default {
     name: 'svg',
       data(){
@@ -201,7 +199,8 @@
 
           },
           handleClick(row){
-              console.log(row)
+            console.log(row)
+            this.$router.push({name: 'realdashboard',params:row})
           }
       }
   }

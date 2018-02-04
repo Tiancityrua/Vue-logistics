@@ -67,22 +67,9 @@
       }
     },
     mounted(){
-      this.selectmawb()
+      this.form=this.$route.params
     },
     methods:{
-        selectmawb(){
-          let _this=this;
-          var param={
-            'mawb':'11'
-          }
-          this.$api.selectmawb2(param).then(res=>{
-              _this.form.accInfo=res.data[0]['accInfo']
-              _this.form.airDeparture=res.data[0]['airDeparture']
-              _this.form.airDestination=res.data[0]['airDestination']
-              _this.form.flightDate=res.data[0]['flightDate']
-          }
-          )
-        }
     }
 
   }
