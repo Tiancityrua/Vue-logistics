@@ -129,7 +129,6 @@
     </div>
 </template>
 <script>
-  import routers from '../index.js';
   export default {
     name: 'svg',
       data(){
@@ -153,7 +152,6 @@
       },
       methods: {
           onSubmit() {
-              console.log('submit!');
               let _this=this;
               var param={
                   'mawb':this.mawb,
@@ -170,8 +168,7 @@
 
           },
           getShipper(value) {
-
-              this.$api.getShips().then(res => {
+              this.$api.getmaShips().then(res => {
                   const result = []
                   res.data.forEach(item => {
                       result.push({
@@ -185,7 +182,7 @@
 
           },
           getConsignee(value) {
-              this.$api.getConsignees().then(res => {
+              this.$api.getmaConsignees().then(res => {
                   const result = []
                   res.data.forEach(item => {
                       result.push({
@@ -199,7 +196,6 @@
 
           },
           handleClick(row){
-            console.log(row)
             this.$router.push({name: 'realdashboard',params:row})
           }
       }

@@ -12,16 +12,20 @@ ztc.interceptors.response.use(res => {
 
 })
 
-export const getShips = params => {
+export const getmaShips = params => {
     return ztc.get(`/freight/select/bill/mashipper`, {params}).then(res => res.data)
 }
-export const getConsignees=params=>{
+export const getmaConsignees=params=>{
     return ztc.get(`/freight/select/bill/maconsignee`, {params}).then(res => res.data)
 }
 export const selectmawb=params=>{
     return ztc.post(`/freight/select/bill/mawb`,params).then(res=>res.data)
 }
 
-export const selectmawb2=params=>{
-    return ztc.post(`/freight/select/bill/mawb`,params).then(res=>res.data)
+export const insertmawb=params=>{
+    return ztc.post(`/freight/insert/bill/mawb`,params).then(res=>res.data)
+}
+
+export const updatemawb=params=>{
+    return ztc.post(`/freight/update/bill/mawb`,params).then(res=>res.data)
 }

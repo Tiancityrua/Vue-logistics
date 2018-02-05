@@ -70,6 +70,26 @@
       this.form=this.$route.params
     },
     methods:{
+      onSubmit(){
+        var param=this.form
+        let _this=this
+          this.$api.updatemawb(param).then((response)=>{
+                    var type=response.msg;
+                    var message=response.event;
+                    if(type=='success'){
+                        _this.$message(
+                            {
+                                message:message,
+                                type:'success'
+                            }
+                        )
+                    }
+                    else {
+                        _this.$message.error(message)
+                    }
+          }
+          )
+      }
     }
 
   }

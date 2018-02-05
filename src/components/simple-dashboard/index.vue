@@ -68,24 +68,10 @@
       methods:{
             onSubmit(){
                 let _this=this;
-                var param={
-                    'mawb':this.form.mawb,
-                    'airline':this.form.airline,
-                    'flightNo':this.form.flightNo,
-                    'flightDate':this.form.flightDate,
-                    'accInfo':this.form.accInfo,
-                    'shipper':this.form.shipper,
-                    'consignee':this.form.consignee,
-                    'weight':this.form.weight,
-                    'volume':this.form.volume,
-                    'chargableWeight':this.form.chargableWeight,
-                    'airDeparture':this.form.airDeparture,
-                    'airDestination':this.form.airDestination
-                };
-                this.$axios.post('http://localhost:8080/freight/insert/bill/mawb',param).then(function (response) {
-                    console.log(response);
-                    var type=response.data.msg;
-                    var message=response.data.event;
+                var param=this.form;
+                this.$api.insertmawb(param).then(function (response) {
+                    var type=response.msg;
+                    var message=response.event;
                     if(type=='success'){
                         _this.$message(
                             {
