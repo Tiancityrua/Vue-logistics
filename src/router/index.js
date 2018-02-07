@@ -13,7 +13,7 @@ routes = routes.concat({
   path: '/',
   name: 'home',
   redirect:  {
-    name: 'svg'
+    name:'main'
   }
 })
 

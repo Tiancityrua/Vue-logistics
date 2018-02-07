@@ -130,7 +130,7 @@
 </template>
 <script>
   export default {
-    name: 'svg',
+    name: 'selectmawb',
       data(){
         return{
             tableData:[],
@@ -196,7 +196,7 @@
 
           },
           handleClick(row){
-            this.$router.push({name: 'realdashboard',params:row})
+            this.$router.push({name: 'updatemawb',params:row})
           }
       }
   }

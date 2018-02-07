@@ -1,11 +1,12 @@
-import svg from './svg';
-import simpledashboard from './simple-dashboard';
-import realdashboard from './real-dashboard';
-import dashboardCom from './dashboard-com'
-
+import selectmawb from './select/mawb';
+import insertmawb from './insert/mawb';
+import updatemawb from './update/mawb';
+import main from './main'
+import login from './login'
 export default [
-  svg,
-  simpledashboard,
-  realdashboard,
-  dashboardCom
+  selectmawb,
+  insertmawb,
+  updatemawb,
+  main,
+  login
 ]

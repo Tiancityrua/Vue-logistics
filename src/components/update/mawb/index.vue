@@ -38,18 +38,19 @@
                 <el-input type="text" size="large" v-model="form.airDestination"></el-input>
         </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">确认添加</el-button>
+        <el-button type="primary" @click="onSubmit">确认更新</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
+
 <script>
   export default{
-      name:'simpledashboard',
-      data(){
-          return{
-              form:{
+    name:'updatemawb',
+    data(){
+      return{
+            form:{
                   mawb:'',
                   airline:'',
                   flightNo:'',
@@ -63,13 +64,16 @@
                   airDeparture:'',
                   airDestination:''
               }
-          }
-      },
-      methods:{
-            onSubmit(){
-                let _this=this;
-                var param=this.form;
-                this.$api.insertmawb(param).then(function (response) {
+      }
+    },
+    mounted(){
+      this.form=this.$route.params
+    },
+    methods:{
+      onSubmit(){
+        var param=this.form
+        let _this=this
+          this.$api.updatemawb(param).then((response)=>{
                     var type=response.msg;
                     var message=response.event;
                     if(type=='success'){
@@ -83,9 +87,10 @@
                     else {
                         _this.$message.error(message)
                     }
-                })
-            }
+          }
+          )
       }
+    }
 
   }
 </script>
