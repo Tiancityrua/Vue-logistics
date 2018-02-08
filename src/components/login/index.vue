@@ -60,7 +60,7 @@
     Login(formname){
         this.$refs[formname].validate((valid)=>{
             if(valid){
-                alert('submit')
+                
             }
             else{
                 return false;
