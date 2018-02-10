@@ -60,7 +60,15 @@
     Login(formname){
         this.$refs[formname].validate((valid)=>{
             if(valid){
-                
+                this.loading=true
+                this.$store.dispatch('Login',this.form).then(()=>{
+                    this.loading=false
+                    this.$router.push({name:'main'})
+                }
+                ).catch(()=>{
+                    this.loading=false
+                }
+                )
             }
             else{
                 return false;

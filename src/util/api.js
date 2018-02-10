@@ -12,7 +12,7 @@ ztc.interceptors.response.use(res => {
 
 })
 
-export const getmaShips = params => {
+export const getmaShips=params => {
     return ztc.get(`/freight/select/bill/mashipper`, {params}).then(res => res.data)
 }
 export const getmaConsignees=params=>{
@@ -28,4 +28,8 @@ export const insertmawb=params=>{
 
 export const updatemawb=params=>{
     return ztc.post(`/freight/update/bill/mawb`,params).then(res=>res.data)
+}
+
+export const login=params=>{
+    return ztc.post(`/freight/login/token`,params).then(res=>res.data)
 }
