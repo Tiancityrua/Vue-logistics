@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './src/App.vue';
 import './src/asset/styles/index.less';
 import * as $api from './src/util/api'
+import './permission'
 
 Vue.use(ElementUI);
 

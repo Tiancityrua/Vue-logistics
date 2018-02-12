@@ -33,3 +33,7 @@ export const updatemawb=params=>{
 export const login=params=>{
     return ztc.post(`/freight/login/token`,params).then(res=>res.data)
 }
+
+export const getinfo=params=>{
+    return ztc.post(`/freight/login/userinfo`,params).then(res=>res.data)
+}

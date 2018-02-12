@@ -19,7 +19,7 @@
          </span>
       </el-form-item>
         <el-form-item>
-        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="Login('form')">
+        <el-button type="primary" style="width:100%;" @click.native.prevent="Login('form')">
           登录
         </el-button>
       </el-form-item>
@@ -60,13 +60,10 @@
     Login(formname){
         this.$refs[formname].validate((valid)=>{
             if(valid){
-                this.loading=true
                 this.$store.dispatch('Login',this.form).then(()=>{
-                    this.loading=false
-                    this.$router.push({name:'main'})
+                    this.$router.push({path:'/main'})
                 }
-                ).catch(()=>{
-                    this.loading=false
+                ).catch(()=>{   
                 }
                 )
             }
