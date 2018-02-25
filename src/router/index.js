@@ -9,22 +9,31 @@ import selectmawb from '../components/select/mawb/index'
 import insertmawb from '../components/insert/mawb/index'
 
 export const constantRoutermap=[
-  {path:'/login',component: login},
-  {path:'/',redirect:{path:'/login'}},
+  {path:'/login',component: login,hidden:true},
+  {path:'/',redirect:{path:'/login'},hidden:true},
   {
   path:'/main',
   component: main,
-  redirect:'/selectbill/mawb'
+  redirect:'/selectbill/mawb',
+  hidden:true
   },
   {
   path:'/selectbill',
   component:main,
   redirect:'/selectbill/mawb',
-  children:[{
+  meta:{title:'bill_select'},
+  children:[
+  {
     path:'mawb',
     component:selectmawb,
     name:'selectmawb',
     meta:{title:'selectmawb'}
+  },
+  {
+    path:'hawb',
+    component:selectmawb,
+    name:'selecthawb',
+    meta:{title:'selecthawb'}
   }
   ]
   }
@@ -40,13 +49,22 @@ export const asyncRoutermap=[
     path:'/insertbill',
     component:main,
     redirect:'/insertbill/mawb',
-    meta:{role:'manager'},
-    children:[{
+    meta:{role:'manager',title:'bill_insert'},
+    children:[
+    {
       path:'mawb',
       component:insertmawb,
       name:'insertmawb',
       meta:{
         title:'insertmawb',
+      }
+    },
+    {
+      path:'hawb',
+      component:insertmawb,
+      name:'inserthawb',
+      meta:{
+        title:'inserthawb'
       }
     }
     ]

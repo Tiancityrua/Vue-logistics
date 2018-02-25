@@ -1,5 +1,5 @@
 <template>
-    <div style="text-align: center">
+    <div class="app-container">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="主单号">
                 <el-input  v-model="mawb" placeholder="主单号"></el-input>

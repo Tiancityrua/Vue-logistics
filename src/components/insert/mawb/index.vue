@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: center">
+  <div  class="app-container">
     <el-form ref="form" :model="form" label-width="80px" label-height="100px" inline>
       <el-form-item  label="主单号" width="25%">
         <el-input type="text" size="large" v-model="form.mawb"></el-input>

@@ -11,7 +11,7 @@
     },
     data() {
       return {
-        name: 'd3-share'
+        name: 'app'
       }
     }
   }

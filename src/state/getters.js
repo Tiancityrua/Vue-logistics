@@ -5,5 +5,6 @@ const getters={
     sidebar: state=>state.app.sidebar,
     permission_routers: state => state.permission.routers,
     addRouters: state => state.permission.addRouters,
+    language: state => state.app.language
 }
 export default getters

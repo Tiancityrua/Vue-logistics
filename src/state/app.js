@@ -4,7 +4,8 @@ const app={
     state:{
         sidebar:{
             opened: !+Cookies.get('sidebarStatus')
-        }
+        },
+        language: Cookies.get('language') || 'en'
     },
     mutations:{
         SET_SIDEBAR:state=>{
@@ -15,11 +16,18 @@ const app={
                 Cookies.set('sidebarStatus',0)
             }
             state.sidebar.opened = !state.sidebar.opened
+        },
+        SET_LANGUAGE: (state,language)=>{
+            state.language=language
+            Cookies.set('language',language)
         }
     },  
     actions:{
         setSidebar({commit}){
             commit('SET_SIDEBAR')
+        },
+        setLanguage({commit},language){
+            commit('SET_LANGUAGE',language)
         }
     }
 }

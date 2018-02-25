@@ -7,8 +7,13 @@ import App from './src/App.vue';
 import './src/asset/styles/index.less';
 import * as $api from './src/util/api'
 import './permission'
+import i18n from './src/language'
 
-Vue.use(ElementUI);
+
+Vue.use(ElementUI,{
+    size:'medium',
+    i18n:(key,value)=>i18n.t(key,value)
+});
 
 Vue.prototype.$api=$api;
 
@@ -17,6 +22,7 @@ new Vue({
   template: '<App/>',
   router,
   store,
+  i18n,
   components: {
     App
   }
