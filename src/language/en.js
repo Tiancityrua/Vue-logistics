@@ -2,8 +2,10 @@ export default{
     login:{
         title:'Logistics System',
         login:'Log in',
+        logout:'Log out',
         username:'username',
-        password:'password'
+        password:'password',
+        hello:'Hello!'
     },
     route:{
         bill_select:'bill-select',

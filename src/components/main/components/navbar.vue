@@ -3,6 +3,18 @@
         <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
         <div class="right-menu">
         <lang-select class="international right-menu-item"></lang-select>
+
+        <el-dropdown class="avatar-container right-menu-item" trigger="click">
+            <div class="avatar-wrapper">
+              <span>{{$t('login.hello')}}{{username}}</span>
+            </div>
+            <el-dropdown-menu class="" slot="dropdown">
+            <el-dropdown-item>
+            <span @click="logout" style="display:block;">{{$t('login.logout')}}</span>
+            </el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+
         </div> 
 
         
@@ -22,7 +34,8 @@ export default{
         computed:{
             ...mapGetters(
                 [
-                    'sidebar'
+                    'sidebar',
+                    'username'          
                 ]
             )
         },
@@ -30,6 +43,12 @@ export default{
             toggleSideBar() {
          this.$store.dispatch('setSidebar')
          },
+         logout(){
+           this.$store.dispatch('Logout').then(()=>{
+             location.reload()
+           }
+           )
+         }
         }
 }
 </script>
@@ -47,10 +66,6 @@ export default{
   }
   .breadcrumb-container{
     float: left;
-  }
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
   }
   .right-menu {
     float: right;
@@ -72,6 +87,20 @@ export default{
       vertical-align: 15px;
     }
   }
+    .avatar-container {
+      height: 50px;
+      margin-right: 30px;
+      .avatar-wrapper {
+        cursor: pointer;
+        margin-top: 0px;
+        position: relative;
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+        }
+      }
+    }
 }
 </style>
 
