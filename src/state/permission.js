@@ -46,7 +46,7 @@ const permission={
                     accessedRouters=asyncRoutermap
                 }
                 else{
-                    accessedRouters=[]
+                    accessedRouters=filterAsyncrouter(asyncRoutermap,role)
                 }
                 commit('SET_ROUTERS',accessedRouters)
                 resolve()

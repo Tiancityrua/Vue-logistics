@@ -14,28 +14,8 @@ export const constantRoutermap=[
   {
   path:'/main',
   component: main,
-  redirect:'/selectbill/mawb',
+  redirect:'/mawb/select',
   hidden:true
-  },
-  {
-  path:'/selectbill',
-  component:main,
-  redirect:'/selectbill/mawb',
-  meta:{title:'bill_select'},
-  children:[
-  {
-    path:'mawb',
-    component:selectmawb,
-    name:'selectmawb',
-    meta:{title:'selectmawb'}
-  },
-  {
-    path:'hawb',
-    component:selectmawb,
-    name:'selecthawb',
-    meta:{title:'selecthawb'}
-  }
-  ]
   }
 ]
 
@@ -46,27 +26,48 @@ export default new Router({
 
 export const asyncRoutermap=[
   {
-    path:'/insertbill',
+    path:'/mawb',
     component:main,
-    redirect:'/insertbill/mawb',
-    meta:{role:'manager',title:'bill_insert'},
+    redirect:'/mawb/select',
+    meta:{title:'mawb'},
     children:[
     {
-      path:'mawb',
+      path:'insert',
       component:insertmawb,
       name:'insertmawb',
       meta:{
-        title:'insertmawb',
+        title:'insert',
+        role:'manager'
       }
     },
     {
-      path:'hawb',
-      component:insertmawb,
-      name:'inserthawb',
+      path:'select',
+      component:selectmawb,
+      name:'selectmawb',
       meta:{
-        title:'inserthawb'
+        title:'select',
       }
     }
     ]
-  }
+  },
+  // {
+  //   path:'/selectbill',
+  //   component:main,
+  //   redirect:'/selectbill/mawb',
+  //   meta:{title:'bill_select'},
+  //   children:[
+  //   {
+  //     path:'mawb',
+  //     component:selectmawb,
+  //     name:'selectmawb',
+  //     meta:{title:'selectmawb'}
+  //   },
+  //   {
+  //     path:'hawb',
+  //     component:selectmawb,
+  //     name:'selecthawb',
+  //     meta:{title:'selecthawb'}
+  //   }
+  //   ]
+  //   }
 ]

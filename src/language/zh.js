@@ -8,11 +8,10 @@ export default{
         hello:'你好!'
     },
     route:{
-        bill_select:'主分单查找',
+        mawb:'主单',
         selectmawb:'主单查找',
-        selecthawb:'分单查找',
-        bill_insert:'主分单插入',
         insertmawb:'主单插入',
-        inserthawb:'分单插入'
+        select:'查找',
+        insert:'插入'
     }
 }

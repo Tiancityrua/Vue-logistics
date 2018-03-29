@@ -8,11 +8,10 @@ export default{
         hello:'Hello!'
     },
     route:{
-        bill_select:'bill-select',
+        mawb:'mawb',
         selectmawb:'selectmawb',
-        selecthawb:'selecthawb',
-        bill_insert:'bill-insert',
         insertmawb:'insertmawb',
-        inserthawb:'inserthawb'
+        select:'select',
+        insert:'insert'
     }
 }
