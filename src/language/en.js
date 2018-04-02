@@ -9,9 +9,14 @@ export default{
     },
     route:{
         mawb:'mawb',
+        invoice:'invoice',
         selectmawb:'selectmawb',
         insertmawb:'insertmawb',
-        select:'select',
-        insert:'insert'
+        selectinvoice:'selectinvoice',
+        insertinvoice:'insertinvoice'
+    },
+    main:{
+        search:'search',
+        update:'update'
     }
 }

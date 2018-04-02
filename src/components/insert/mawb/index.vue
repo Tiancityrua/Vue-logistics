@@ -1,200 +1,200 @@
 <template>
   <div  class="app-container">
-    <el-form ref="form" :model="form" label-width="125px" inline :rules="rules">
+    <el-form ref="form" :model="form" label-width="125px" inline :rules="rules" size="large">
       <el-form-item  label="mawb" prop="mawb">
-        <el-input type="text" size="large" v-model="form.mawb"></el-input>
+        <el-input type="text"  v-model="form.mawb"></el-input>
       </el-form-item>
-        <el-form-item  label="shipper_no">
-        <el-input type="text" size="large" v-model="form.shipperNo"></el-input>
+        <el-form-item  label="shipper_no" prop="shipperNo">
+        <el-input type="text"  v-model="form.shipperNo"></el-input>
         </el-form-item>
         <el-form-item  label="consignee_no" >
-        <el-input type="text" size="large" v-model="form.consigneeNo"></el-input>
+        <el-input type="text"  v-model="form.consigneeNo"></el-input>
         </el-form-item>
         <el-form-item  label="issuing_carrier" >
-        <el-input type="text" size="large" v-model="form.issuingCarrier"></el-input>
+        <el-input type="text"  v-model="form.issuingCarrier"></el-input>
         </el-form-item>
        <el-form-item  label="agent_iata" >
-        <el-input type="text" size="large" v-model="form.agentIata"></el-input>
+        <el-input type="text"  v-model="form.agentIata"></el-input>
         </el-form-item>
        <el-form-item  label="account_no" >
-        <el-input type="text" size="large" v-model="form.accountNo"></el-input>
+        <el-input type="text"  v-model="form.accountNo"></el-input>
         </el-form-item>
         <el-form-item  label="air_departure" prop="airDeparture">
-        <el-input type="text" size="large" v-model="form.airDeparture"></el-input>
+        <el-input type="text"  v-model="form.airDeparture"></el-input>
         </el-form-item>
        <el-form-item  label="air_dest" prop="airDest">
-        <el-input type="text" size="large" v-model="form.airDest"></el-input>
+        <el-input type="text"  v-model="form.airDest"></el-input>
         </el-form-item>
          <el-form-item  label="shipper" prop="shipper">
-        <el-input type="textarea" autosize  size="large" v-model="form.shipper"></el-input>
+        <el-input type="textarea" autosize   v-model="form.shipper"></el-input>
         </el-form-item>
         <el-form-item  label="consignee" prop="consignee">
-        <el-input type="textarea" autosize size="large" v-model="form.consignee"></el-input>
+        <el-input type="textarea" autosize  v-model="form.consignee"></el-input>
         </el-form-item>
         <el-form-item  label="issued_by" >
-        <el-input type="textarea" autosize size="large" v-model="form.issuedBy"></el-input>
+        <el-input type="textarea" autosize  v-model="form.issuedBy"></el-input>
         </el-form-item>
         <el-form-item  label="account_info" prop="accountInfo">
-        <el-input type="textarea" autosize size="large" v-model="form.accountInfo"></el-input>
+        <el-input type="textarea" autosize  v-model="form.accountInfo"></el-input>
         </el-form-item>
         <el-form-item  label="to1" >
-        <el-input type="text" size="large" v-model="form.to1"></el-input>
+        <el-input type="text"  v-model="form.to1"></el-input>
         </el-form-item>
         <el-form-item  label="by1" >
-        <el-input type="text" size="large" v-model="form.by1"></el-input>
+        <el-input type="text"  v-model="form.by1"></el-input>
         </el-form-item>
         <el-form-item  label="to2" >
-        <el-input type="text" size="large" v-model="form.to2"></el-input>
+        <el-input type="text"  v-model="form.to2"></el-input>
         </el-form-item>
         <el-form-item  label="by2" >
-        <el-input type="text" size="large" v-model="form.by2"></el-input>
+        <el-input type="text"  v-model="form.by2"></el-input>
         </el-form-item>
         <el-form-item  label="to3" >
-        <el-input type="text" size="large" v-model="form.to3"></el-input>
+        <el-input type="text"  v-model="form.to3"></el-input>
         </el-form-item>
         <el-form-item  label="by3" >
-        <el-input type="text" size="large" v-model="form.by3"></el-input>
+        <el-input type="text"  v-model="form.by3"></el-input>
         </el-form-item>
         <el-form-item  label="flight_no" prop="flightNo">
-        <el-input type="text" size="large" v-model="form.flightNo"></el-input>
+        <el-input type="text"  v-model="form.flightNo"></el-input>
         </el-form-item>
         <el-form-item  label="flight_date" prop="flightDate">
-        <el-date-picker type="date" size="large" v-model="form.flightDate" style="width: 206.4px;"></el-date-picker>
+        <el-date-picker type="date"  v-model="form.flightDate" style="width: 206.4px;"></el-date-picker>
         </el-form-item>
         <el-form-item  label="currency" prop="currency">
-        <el-input type="text" size="large" v-model="form.currency"></el-input>
+        <el-input type="text"  v-model="form.currency"></el-input>
         </el-form-item>
         <el-form-item  label="chg_code" >
-        <el-input type="text" size="large" v-model="form.chgCode"></el-input>
+        <el-input type="text"  v-model="form.chgCode"></el-input>
         </el-form-item>
         <el-form-item  label="wt_val" prop="wtVal">
-        <el-input type="text" size="large" v-model="form.wtVal"></el-input>
+        <el-input type="text"  v-model="form.wtVal"></el-input>
         </el-form-item>
         <el-form-item  label="other" prop="other">
-        <el-input type="text" size="large" v-model="form.other"></el-input>
+        <el-input type="text"  v-model="form.other"></el-input>
         </el-form-item>
         <el-form-item  label="declared_carriage" prop="declaredCarriage">
-        <el-input type="text" size="large" v-model="form.declaredCarriage"></el-input>
+        <el-input type="text"  v-model="form.declaredCarriage"></el-input>
         </el-form-item>
         <el-form-item  label="declared_customs" prop="declaredCustoms">
-        <el-input type="text" size="large" v-model="form.declaredCustoms"></el-input>
+        <el-input type="text"  v-model="form.declaredCustoms"></el-input>
         </el-form-item>
         <el-form-item  label="amount_insurance" prop="amountInsurance">
-        <el-input type="text" size="large" v-model="form.amountInsurance"></el-input>
+        <el-input type="text"  v-model="form.amountInsurance"></el-input>
         </el-form-item>
         <el-form-item  label="handling_info" prop="handlingInfo">
-        <el-input type="textarea" autosize size="large" v-model="form.handlingInfo"></el-input>
+        <el-input type="textarea" autosize  v-model="form.handlingInfo"></el-input>
         </el-form-item>
         <el-form-item  label="sci" >
-        <el-input type="text"  size="large" v-model="form.sci"></el-input>
+        <el-input type="text"   v-model="form.sci"></el-input>
         </el-form-item>
         <el-form-item  label="no_pieces" prop="noPieces">
-        <el-input type="text"  size="large" v-model="form.noPieces"></el-input>
+        <el-input type="text"   v-model="form.noPieces"></el-input>
         </el-form-item>
         <el-form-item  label="gross_weight" prop="grossWeight">
-        <el-input type="text"  size="large" v-model="form.grossWeight"></el-input>
+        <el-input type="text"   v-model="form.grossWeight"></el-input>
         </el-form-item>
         <el-form-item  label="total_pieces" prop="totalPieces">
-        <el-input type="text"  size="large" v-model="form.totalPieces"></el-input>
+        <el-input type="text"   v-model="form.totalPieces"></el-input>
         </el-form-item>
         <el-form-item  label="total_weight" prop="totalWeight">
-        <el-input type="text"  size="large" v-model="form.totalWeight"></el-input>
+        <el-input type="text"   v-model="form.totalWeight"></el-input>
         </el-form-item>
         <el-form-item  label="kg_lb" prop="kgLb">
-        <el-input type="text"  size="large" v-model="form.kgLb"></el-input>
+        <el-input type="text"   v-model="form.kgLb"></el-input>
         </el-form-item>
         <el-form-item  label="rate_class" >
-        <el-input type="text"  size="large" v-model="form.rateClass"></el-input>
+        <el-input type="text"   v-model="form.rateClass"></el-input>
         </el-form-item>
         <el-form-item  label="item_no" prop="itemNo">
-        <el-input type="text"  size="large" v-model="form.itemNo"></el-input>
+        <el-input type="text"   v-model="form.itemNo"></el-input>
         </el-form-item>
         <el-form-item  label="charge_weight" prop="chargeWeight">
-        <el-input type="text"  size="large" v-model="form.chargeWeight"></el-input>
+        <el-input type="text"   v-model="form.chargeWeight"></el-input>
         </el-form-item>
         <el-form-item  label="rate" prop="rate">
-        <el-input type="text" size="large" v-model="form.rate"></el-input>
+        <el-input type="text"  v-model="form.rate"></el-input>
         </el-form-item>
         <el-form-item  label="total1" prop="total1">
-        <el-input type="text"  size="large" v-model="form.total1"></el-input>
+        <el-input type="text"   v-model="form.total1"></el-input>
         </el-form-item>
         <el-form-item  label="total2" prop="total2">
-        <el-input type="text"  size="large" v-model="form.total2"></el-input>
+        <el-input type="text"   v-model="form.total2"></el-input>
         </el-form-item>
         <el-form-item  label="nature" prop="nature">
-        <el-input type="text"  size="large" v-model="form.nature"></el-input>
+        <el-input type="text"   v-model="form.nature"></el-input>
         </el-form-item>
         <el-form-item  label="weight_ppd" >
-        <el-input type="text"  size="large" v-model="form.weightPpd"></el-input>
+        <el-input type="text"   v-model="form.weightPpd"></el-input>
         </el-form-item>
         <el-form-item  label="weight_coll" >
-        <el-input type="text"  size="large" v-model="form.weightColl"></el-input>
+        <el-input type="text"   v-model="form.weightColl"></el-input>
         </el-form-item>
         <el-form-item  label="val_ppd" >
-        <el-input type="text"  size="large" v-model="form.valPpd"></el-input>
+        <el-input type="text"   v-model="form.valPpd"></el-input>
         </el-form-item>
         <el-form-item  label="val_coll" >
-        <el-input type="text"  size="large" v-model="form.valColl"></el-input>
+        <el-input type="text"   v-model="form.valColl"></el-input>
         </el-form-item>
         <el-form-item  label="tax_ppd" >
-        <el-input type="text"  size="large" v-model="form.taxPpd"></el-input>
+        <el-input type="text"   v-model="form.taxPpd"></el-input>
         </el-form-item>
         <el-form-item  label="tax_coll" >
-        <el-input type="text"  size="large" v-model="form.taxColl"></el-input>
+        <el-input type="text"   v-model="form.taxColl"></el-input>
         </el-form-item>
         <el-form-item  label="agent_ppd" >
-        <el-input type="text"  size="large" v-model="form.agentPpd"></el-input>
+        <el-input type="text"   v-model="form.agentPpd"></el-input>
         </el-form-item>
         <el-form-item  label="agent_coll" >
-        <el-input type="text"  size="large" v-model="form.agentColl"></el-input>
+        <el-input type="text"   v-model="form.agentColl"></el-input>
         </el-form-item>
         <el-form-item  label="carrier_ppd" >
-        <el-input type="text"  size="large" v-model="form.carrierPpd"></el-input>
+        <el-input type="text"   v-model="form.carrierPpd"></el-input>
         </el-form-item>
         <el-form-item  label="carrier_coll" >
-        <el-input type="text"  size="large" v-model="form.carrierColl"></el-input>
+        <el-input type="text"   v-model="form.carrierColl"></el-input>
         </el-form-item>
         <el-form-item  label="total_ppd" >
-        <el-input type="text"  size="large" v-model="form.totalPpd"></el-input>
+        <el-input type="text"   v-model="form.totalPpd"></el-input>
         </el-form-item>
         <el-form-item  label="total_coll" >
-        <el-input type="text"  size="large" v-model="form.totalColl"></el-input>
+        <el-input type="text"   v-model="form.totalColl"></el-input>
         </el-form-item>
         <el-form-item  label="currency_rates" >
-        <el-input type="text"  size="large" v-model="form.currencyRates"></el-input>
+        <el-input type="text"   v-model="form.currencyRates"></el-input>
         </el-form-item>
         <el-form-item  label="dest_currency" >
-        <el-input type="text"  size="large" v-model="form.destCurrency"></el-input>
+        <el-input type="text"   v-model="form.destCurrency"></el-input>
         </el-form-item>
         <el-form-item  label="charges_dest" >
-        <el-input type="text"  size="large" v-model="form.chargesDest"></el-input>
+        <el-input type="text"   v-model="form.chargesDest"></el-input>
         </el-form-item>
         <el-form-item  label="totalcoll_charges" >
-        <el-input type="text"  size="large" v-model="form.totalcollCharges"></el-input>
+        <el-input type="text"   v-model="form.totalcollCharges"></el-input>
         </el-form-item>
         <el-form-item  label="other_charges" >
-        <el-input type="text"  size="large" v-model="form.otherCharges"></el-input>
+        <el-input type="text"   v-model="form.otherCharges"></el-input>
         </el-form-item>
         <el-form-item  label="shipper_certifies" >
-        <el-input type="text"  size="large" v-model="form.shipperCertifies"></el-input>
+        <el-input type="text"   v-model="form.shipperCertifies"></el-input>
         </el-form-item>
         <el-form-item  label="excuted_on" prop="excutedOn">
-        <el-date-picker type="date" size="large" v-model="form.excutedOn" style="width: 206.4px;"></el-date-picker>
+        <el-date-picker type="date"  v-model="form.excutedOn" style="width: 206.4px;"></el-date-picker>
         </el-form-item>
         <el-form-item  label="place" prop="place">
-        <el-input type="text"  size="large" v-model="form.place"></el-input>
+        <el-input type="text"   v-model="form.place"></el-input>
         </el-form-item>
         <el-form-item  label="signature_shipper">
-        <el-input type="text"  size="large" v-model="form.signatureShipper"></el-input>
+        <el-input type="text"   v-model="form.signatureShipper"></el-input>
         </el-form-item>
         <el-form-item  label="signature_carrier">
-        <el-input type="text"  size="large" v-model="form.signatureCarrier"></el-input>
+        <el-input type="text"   v-model="form.signatureCarrier"></el-input>
         </el-form-item>
         <el-form-item label="                   ">
-        <el-button size="large" type="primary" style="width:206.4px" @click="onSubmit('form')">提交</el-button>
+        <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">提交</el-button>
         </el-form-item>    
         <el-form-item label="               ">
-        <el-button size="large" type="danger" style="width:206.4px">重置</el-button>
+        <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">重置</el-button>
         </el-form-item>  
     </el-form>
   </div>
@@ -387,7 +387,10 @@ import {generateTitle} from '../../../util/showtitle'
                 return false;
             }
       })
-    }
+    },
+    resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
 }
 }
 </script>

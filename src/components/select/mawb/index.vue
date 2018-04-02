@@ -1,55 +1,75 @@
 <template>
     <div class="app-container">
-        <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="主单号">
-                <el-input  v-model="mawb" placeholder="主单号"></el-input>
+        <el-form ref="form" inline :model="form" label-width="125px" size="large">
+            <el-form-item label="mawb">
+                <el-input  v-model="form.mawb"></el-input>
             </el-form-item>
-            <el-form-item label="航空公司">
-                <el-input  v-model="airline" placeholder="航空公司"></el-input>
+            <el-form-item label="flight_no">
+                <el-input v-model="form.flightNo"></el-input>
             </el-form-item>
-            <el-form-item label="航班号">
-                <el-input v-model="flightNo" placeholder="航班号"></el-input>
-            </el-form-item>
-            <el-form-item label="发货人">
+            <el-form-item label="shipper">
                 <el-select
-                    v-model="shipper"
+                    v-model="form.shipper"
                     clearable
                     filterable
-                    placeholder="发货人">
+                    style="width: 206.4px;">
                     <el-option v-for="list in ships" :key="list.value"
                                 :value="list.value" :label="list.label"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="收货人">
+            <el-form-item label="consignee">
                 <el-select
-                        v-model="consignee"
+                        v-model="form.consignee"
                         clearable
                         filterable
-                        placeholder="收货人">
+                         style="width: 206.4px;">
                     <el-option v-for="list in consignees" :key="list.value"
                                :value="list.value" :label="list.label"></el-option>
                 </el-select>
             </el-form-item>
+            <el-form-item label="start_time">
             <el-date-picker
-                        v-model="date1"
+                        v-model="form.date1"
                         type="date"
-                        placeholder="起始时间"
-                        format="yyyy 年 MM 月 dd 日"
-                        value-format="yyyy-MM-dd">
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
             </el-date-picker>
+            </el-form-item>
+            <el-form-item label="end_time">
             <el-date-picker
-                    v-model="date2"
+                    v-model="form.date2"
                     type="date"
-                    placeholder="结束时间"
-                    format="yyyy 年 MM 月 dd 日"
-                    value-format="yyyy-MM-dd">
+                    format="yyyy-MM-dd"
+                    value-format="yyyy-MM-dd" style="width: 206.4px;">
             </el-date-picker>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">查询</el-button>
+            </el-form-item>
+            <el-form-item label="air_departure">
+                <el-input v-model="form.airDeparture">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="air_dest">
+                <el-input v-model="form.airDest">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="excuted_on">
+                    <el-date-picker
+                    v-model="form.excutedOn"
+                    type="date"
+                    format="yyyy-MM-dd"
+                    value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+            </el-form-item>
+            <el-form-item label="place">
+                <el-input v-model="form.place">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="         ">
+                <el-button type="primary" @click="onSubmit" style="width: 206.4px;">{{$t('main.search')}}</el-button>
             </el-form-item>
             </el-form>
             <div style="text-align: center">
             <el-table
+                    border="true"
                     max-height="800"
                     header-align="center"
                     align="center"
@@ -58,70 +78,325 @@
                 <el-table-column
                         fixed="left"
                         prop="mawb"
-                        label="主单号"
+                        label="mawb"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="airline"
-                        label="航空公司"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        prop="flightNo"
-                        label="航班号"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        prop="flightDate"
-                        label="航班日期"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        prop="accInfo"
-                        label="附加信息"
+                        prop="shipperNo"
+                        label="shipper_no"
                         width="180">
                 </el-table-column>
                 <el-table-column
                         prop="shipper"
-                        label="发货人"
+                        label="shipper"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="consigneeNo"
+                        label="consignee_no"
                         width="180">
                 </el-table-column>
                 <el-table-column
                         prop="consignee"
-                        label="收货人"
+                        label="consignee"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="weight"
-                        label="重量"
+                        prop="issuedBy"
+                        label="issued_by"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="volume"
-                        label="体积"
+                        prop="issuingCarrier"
+                        label="issuing_carrier"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="chargableWeight"
-                        label="计算重量"
+                        prop="agentIata"
+                        label="agent_iata"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="accountNo"
+                        label="account_no"
                         width="180">
                 </el-table-column>
                 <el-table-column
                         prop="airDeparture"
-                        label="出发机场"
+                        label="air_departure"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="airDestination"
-                        label="到达机场"
+                        prop="airDest"
+                        label="air_dest"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="to1"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="by1"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="to2"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="by2"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="to3"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="by3"
+                        label="to1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="flightNo"
+                        label="flight_no"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="flightDate"
+                        label="flight_date"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="accountInfo"
+                        label="account_info"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="currency"
+                        label="currency"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="chgCode"
+                        label="chg_code"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="wtVal"
+                        label="wt_val"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="other"
+                        label="other"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="declaredCarriage"
+                        label="declared_carriage"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="declaredCustoms"
+                        label="declared_customs"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="amountInsurance"
+                        label="amount_insurance"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="handlingInfo"
+                        label="handling_info"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="sci"
+                        label="sci"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="noPieces"
+                        label="no_pieces"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="grossWeight"
+                        label="gross_weight"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="totalPieces"
+                        label="total_pieces"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="totalWeight"
+                        label="total_weight"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="kgLb"
+                        label="kg_lb"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="rateClass"
+                        label="rate_class"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="itemNo"
+                        label="item_no"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="chargeWeight"
+                        label="charge_weight"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="rate"
+                        label="rate"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="total1"
+                        label="total1"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="total2"
+                        label="total2"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="nature"
+                        label="nature"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="weightPpd"
+                        label="weight_ppd"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="weightColl"
+                        label="weight_coll"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="valPpd"
+                        label="val_ppd"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="valColl"
+                        label="val_coll"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="taxPpd"
+                        label="tax_ppd"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="taxColl"
+                        label="tax_coll"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="agentPpd"
+                        label="agent_ppd"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="agentColl"
+                        label="agent_coll"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="carrierPpd"
+                        label="carrier_ppd"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="carrierColl"
+                        label="carrier_coll"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="totalPpd"
+                        label="total_ppd"
+                        width="180">
+                </el-table-column>
+                 <el-table-column
+                        prop="totalColl"
+                        label="total_coll"
+                        width="180">
+                </el-table-column>
+                 <el-table-column
+                        prop="currencyRates"
+                        label="currency_rates"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="destCurrency"
+                        label="dest_currency"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="chargesDest"
+                        label="charges_dest"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="totalcollCharges"
+                        label="totalcoll_charges"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="otherCharges"
+                        label="other_charges"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="shipperCertifies"
+                        label="shipper_certifies"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="excutedOn"
+                        label="excuted_on"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="place"
+                        label="place"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="signatureShipper"
+                        label="signature_shipper"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="signatureCarrier"
+                        label="signature_carrier"
                         width="180">
                 </el-table-column>
                 <el-table-column
                         fixed="right"
-                        label="操作"
+                        label="operating"
                         width="100">
                      <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="medium">查看</el-button>
+                    <el-button @click="handleClick(scope.row)" type="primary" size="medium">{{$t('main.update')}}</el-button>
                      </template>
                 </el-table-column>
             </el-table>
@@ -133,17 +408,21 @@
     name: 'selectmawb',
       data(){
         return{
-            tableData:[],
+            form:{
             mawb:null,
-            airline:null,
             flightNo:null,
             shipper:null,
             consignee:null,
             date1:null,
             date2:null,
+            airDeparture:null,
+            airDest:null,
+            excutedOn:null,
+            place:null
+            }, 
+            tableData:[],
             ships:null,
             consignees:null
-
         }
       },
       mounted() {
@@ -153,15 +432,7 @@
       methods: {
           onSubmit() {
               let _this=this;
-              var param={
-                  'mawb':this.mawb,
-                  'airline':this.airline,
-                  'flightNo':this.flightNo,
-                  'shipper':this.shipper,
-                  'consignee':this.consignee,
-                  'date1':this.date1,
-                  'date2':this.date2
-              };
+              var param=this.form;
               this.$api.selectmawb(param).then(res=>{
                   _this.tableData=res.data;
               })

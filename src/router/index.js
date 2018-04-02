@@ -36,7 +36,7 @@ export const asyncRoutermap=[
       component:insertmawb,
       name:'insertmawb',
       meta:{
-        title:'insert',
+        title:'insertmawb',
         role:'manager'
       }
     },
@@ -45,29 +45,34 @@ export const asyncRoutermap=[
       component:selectmawb,
       name:'selectmawb',
       meta:{
-        title:'select',
+        title:'selectmawb',
       }
     }
     ]
   },
-  // {
-  //   path:'/selectbill',
-  //   component:main,
-  //   redirect:'/selectbill/mawb',
-  //   meta:{title:'bill_select'},
-  //   children:[
-  //   {
-  //     path:'mawb',
-  //     component:selectmawb,
-  //     name:'selectmawb',
-  //     meta:{title:'selectmawb'}
-  //   },
-  //   {
-  //     path:'hawb',
-  //     component:selectmawb,
-  //     name:'selecthawb',
-  //     meta:{title:'selecthawb'}
-  //   }
-  //   ]
-  //   }
+  {
+    path:'/invoice',
+    component:main,
+    redirect:'/invoice/select',
+    meta:{title:'invoice'},
+    children:[
+      {
+        path:'insert',
+        component:insertmawb,
+        name:'insertinvoice',
+        meta:{
+          title:'insertinvoice',
+          role:'manager'
+        }
+      },
+      {
+        path:'select',
+        component:selectmawb,
+        name:'selectinvoice',
+        meta:{
+          title:'selectinvoice'
+        }
+      }
+    ]
+  }
 ]
