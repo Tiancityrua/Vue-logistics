@@ -17,6 +17,8 @@ export default{
     },
     main:{
         search:'search',
-        update:'update'
+        update:'update',
+        submit:'submit',
+        reset:'reset'
     }
 }

@@ -7,19 +7,19 @@
         <el-form-item  label="shipper_no" prop="shipperNo">
         <el-input type="text"  v-model="form.shipperNo"></el-input>
         </el-form-item>
-        <el-form-item  label="consignee_no" >
+        <el-form-item  label="consignee_no" prop="consigneeNo">
         <el-input type="text"  v-model="form.consigneeNo"></el-input>
         </el-form-item>
-        <el-form-item  label="issuing_carrier" >
+        <el-form-item  label="issuing_carrier" prop="issuingCarrier">
         <el-input type="text"  v-model="form.issuingCarrier"></el-input>
         </el-form-item>
-       <el-form-item  label="agent_iata" >
+       <el-form-item  label="agent_iata" prop="agentIata">
         <el-input type="text"  v-model="form.agentIata"></el-input>
         </el-form-item>
-       <el-form-item  label="account_no" >
+       <el-form-item  label="account_no" prop="accountNo">
         <el-input type="text"  v-model="form.accountNo"></el-input>
         </el-form-item>
-        <el-form-item  label="air_departure" prop="airDeparture">
+        <el-form-item  label="air_departure" prop="airDeparture"> 
         <el-input type="text"  v-model="form.airDeparture"></el-input>
         </el-form-item>
        <el-form-item  label="air_dest" prop="airDest">
@@ -31,28 +31,28 @@
         <el-form-item  label="consignee" prop="consignee">
         <el-input type="textarea" autosize  v-model="form.consignee"></el-input>
         </el-form-item>
-        <el-form-item  label="issued_by" >
+        <el-form-item  label="issued_by" prop="issuedBy">
         <el-input type="textarea" autosize  v-model="form.issuedBy"></el-input>
         </el-form-item>
         <el-form-item  label="account_info" prop="accountInfo">
         <el-input type="textarea" autosize  v-model="form.accountInfo"></el-input>
         </el-form-item>
-        <el-form-item  label="to1" >
+        <el-form-item  label="to1" prop="to1">
         <el-input type="text"  v-model="form.to1"></el-input>
         </el-form-item>
-        <el-form-item  label="by1" >
+        <el-form-item  label="by1" prop="by1">
         <el-input type="text"  v-model="form.by1"></el-input>
         </el-form-item>
-        <el-form-item  label="to2" >
+        <el-form-item  label="to2" prop="to2">
         <el-input type="text"  v-model="form.to2"></el-input>
         </el-form-item>
-        <el-form-item  label="by2" >
+        <el-form-item  label="by2" prop="by2">
         <el-input type="text"  v-model="form.by2"></el-input>
         </el-form-item>
-        <el-form-item  label="to3" >
+        <el-form-item  label="to3" prop="to3">
         <el-input type="text"  v-model="form.to3"></el-input>
         </el-form-item>
-        <el-form-item  label="by3" >
+        <el-form-item  label="by3" prop="by3">
         <el-input type="text"  v-model="form.by3"></el-input>
         </el-form-item>
         <el-form-item  label="flight_no" prop="flightNo">
@@ -64,7 +64,7 @@
         <el-form-item  label="currency" prop="currency">
         <el-input type="text"  v-model="form.currency"></el-input>
         </el-form-item>
-        <el-form-item  label="chg_code" >
+        <el-form-item  label="chg_code" prop="chgCode">
         <el-input type="text"  v-model="form.chgCode"></el-input>
         </el-form-item>
         <el-form-item  label="wt_val" prop="wtVal">
@@ -85,7 +85,7 @@
         <el-form-item  label="handling_info" prop="handlingInfo">
         <el-input type="textarea" autosize  v-model="form.handlingInfo"></el-input>
         </el-form-item>
-        <el-form-item  label="sci" >
+        <el-form-item  label="sci" prop="sci">
         <el-input type="text"   v-model="form.sci"></el-input>
         </el-form-item>
         <el-form-item  label="no_pieces" prop="noPieces">
@@ -103,7 +103,7 @@
         <el-form-item  label="kg_lb" prop="kgLb">
         <el-input type="text"   v-model="form.kgLb"></el-input>
         </el-form-item>
-        <el-form-item  label="rate_class" >
+        <el-form-item  label="rate_class" prop="rateClass">
         <el-input type="text"   v-model="form.rateClass"></el-input>
         </el-form-item>
         <el-form-item  label="item_no" prop="itemNo">
@@ -124,58 +124,58 @@
         <el-form-item  label="nature" prop="nature">
         <el-input type="text"   v-model="form.nature"></el-input>
         </el-form-item>
-        <el-form-item  label="weight_ppd" >
+        <el-form-item  label="weight_ppd" prop="weightPpd">
         <el-input type="text"   v-model="form.weightPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="weight_coll" >
+        <el-form-item  label="weight_coll" prop="weightColl">
         <el-input type="text"   v-model="form.weightColl"></el-input>
         </el-form-item>
-        <el-form-item  label="val_ppd" >
+        <el-form-item  label="val_ppd" prop="valPpd">
         <el-input type="text"   v-model="form.valPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="val_coll" >
+        <el-form-item  label="val_coll" prop="valColl">
         <el-input type="text"   v-model="form.valColl"></el-input>
         </el-form-item>
-        <el-form-item  label="tax_ppd" >
+        <el-form-item  label="tax_ppd" prop="taxPpd">
         <el-input type="text"   v-model="form.taxPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="tax_coll" >
+        <el-form-item  label="tax_coll" prop="taxColl">
         <el-input type="text"   v-model="form.taxColl"></el-input>
         </el-form-item>
-        <el-form-item  label="agent_ppd" >
+        <el-form-item  label="agent_ppd" prop="agentPpd">
         <el-input type="text"   v-model="form.agentPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="agent_coll" >
+        <el-form-item  label="agent_coll" prop="agentColl">
         <el-input type="text"   v-model="form.agentColl"></el-input>
         </el-form-item>
-        <el-form-item  label="carrier_ppd" >
+        <el-form-item  label="carrier_ppd" prop="carrierPpd">
         <el-input type="text"   v-model="form.carrierPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="carrier_coll" >
+        <el-form-item  label="carrier_coll" prop="carrierColl">
         <el-input type="text"   v-model="form.carrierColl"></el-input>
         </el-form-item>
-        <el-form-item  label="total_ppd" >
+        <el-form-item  label="total_ppd" prop="totalPpd">
         <el-input type="text"   v-model="form.totalPpd"></el-input>
         </el-form-item>
-        <el-form-item  label="total_coll" >
+        <el-form-item  label="total_coll" prop="totalColl">
         <el-input type="text"   v-model="form.totalColl"></el-input>
         </el-form-item>
-        <el-form-item  label="currency_rates" >
+        <el-form-item  label="currency_rates" prop="currencyRates">
         <el-input type="text"   v-model="form.currencyRates"></el-input>
         </el-form-item>
-        <el-form-item  label="dest_currency" >
+        <el-form-item  label="dest_currency" prop="destCurrency">
         <el-input type="text"   v-model="form.destCurrency"></el-input>
         </el-form-item>
-        <el-form-item  label="charges_dest" >
+        <el-form-item  label="charges_dest" prop="chargesDest">
         <el-input type="text"   v-model="form.chargesDest"></el-input>
         </el-form-item>
-        <el-form-item  label="totalcoll_charges" >
+        <el-form-item  label="totalcoll_charges" prop="totalcollCharges">
         <el-input type="text"   v-model="form.totalcollCharges"></el-input>
         </el-form-item>
-        <el-form-item  label="other_charges" >
+        <el-form-item  label="other_charges" prop="otherCharges">
         <el-input type="text"   v-model="form.otherCharges"></el-input>
         </el-form-item>
-        <el-form-item  label="shipper_certifies" >
+        <el-form-item  label="shipper_certifies" prop="shipperCertifies">
         <el-input type="text"   v-model="form.shipperCertifies"></el-input>
         </el-form-item>
         <el-form-item  label="excuted_on" prop="excutedOn">
@@ -184,17 +184,17 @@
         <el-form-item  label="place" prop="place">
         <el-input type="text"   v-model="form.place"></el-input>
         </el-form-item>
-        <el-form-item  label="signature_shipper">
+        <el-form-item  label="signature_shipper" prop="signatureShipper">
         <el-input type="text"   v-model="form.signatureShipper"></el-input>
         </el-form-item>
-        <el-form-item  label="signature_carrier">
+        <el-form-item  label="signature_carrier" prop="signatureCarrier">
         <el-input type="text"   v-model="form.signatureCarrier"></el-input>
         </el-form-item>
         <el-form-item label="                   ">
-        <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">提交</el-button>
+        <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
         <el-form-item label="               ">
-        <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">重置</el-button>
+        <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button>
         </el-form-item>  
     </el-form>
   </div>
@@ -203,7 +203,6 @@
 </style>
 
 <script>
-import {generateTitle} from '../../../util/showtitle'
   export default{
       name:'insertmawb',
       data(){

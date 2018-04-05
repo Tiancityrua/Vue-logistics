@@ -7,6 +7,7 @@ import login from '../components/login/index'
 import main from '../components/main/index'
 import selectmawb from '../components/select/mawb/index'
 import insertmawb from '../components/insert/mawb/index'
+import insertinvoice from '../components/insert/invoice/index'
 
 export const constantRoutermap=[
   {path:'/login',component: login,hidden:true},
@@ -58,7 +59,7 @@ export const asyncRoutermap=[
     children:[
       {
         path:'insert',
-        component:insertmawb,
+        component:insertinvoice,
         name:'insertinvoice',
         meta:{
           title:'insertinvoice',
