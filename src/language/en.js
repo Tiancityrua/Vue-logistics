@@ -19,6 +19,7 @@ export default{
         search:'search',
         update:'update',
         submit:'submit',
-        reset:'reset'
+        reset:'reset',
+        scan:'scan'
     }
 }

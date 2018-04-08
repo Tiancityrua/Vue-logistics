@@ -19,6 +19,7 @@ export default{
         search:'查找',
         update:'更新',
         submit:'提交',
-        reset:'重置'
+        reset:'重置',
+        scan:'扫描'
     }
 }

@@ -37,3 +37,11 @@ export const login=params=>{
 export const getinfo=params=>{
     return ztc.post(`/freight/login/userinfo`,params).then(res=>res.data)
 }
+
+export const insertinvoice=params=>{
+    return ztc.post(`/freight/insert/invoice/invoice`,params).then(res=>res.data)
+}
+
+export const insertdetail=params=>{
+    return ztc.post(`/freight/insert/invoice/detail`,params).then(res=>res.data)  
+}

@@ -193,6 +193,9 @@
         <el-form-item label="                   ">
         <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
+         <el-form-item label="               ">
+        <el-button  type="success" style="width:206.4px">{{$t('main.scan')}}</el-button>
+        </el-form-item>  
         <el-form-item label="               ">
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button>
         </el-form-item>  
