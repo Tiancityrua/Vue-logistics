@@ -20,6 +20,8 @@ export default{
         update:'update',
         submit:'submit',
         reset:'reset',
-        scan:'scan'
+        scan:'scan',
+        delete:'delete',
+        newitem:'newitem'
     }
 }

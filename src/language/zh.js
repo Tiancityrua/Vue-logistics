@@ -20,6 +20,8 @@ export default{
         update:'更新',
         submit:'提交',
         reset:'重置',
-        scan:'扫描'
+        scan:'扫描',
+        delete:'删除',
+        newitem:'新增项目'
     }
 }

@@ -368,6 +368,8 @@
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{
                 if(valid){
+                _this.form.flightDate.setDate(_this.form.flightDate.getDate()+1)
+                _this.form.excutedOn.setDate(_this.form.excutedOn.getDate()+1)
                 var param=_this.form;
                 _this.$api.insertmawb(param).then(function (response) {
                     var type=response.msg;
