@@ -59,7 +59,12 @@
         <el-input type="text"  v-model="form.flightNo"></el-input>
         </el-form-item>
         <el-form-item  label="flight_date" prop="flightDate">
-        <el-date-picker type="date"  v-model="form.flightDate" style="width: 206.4px;"></el-date-picker>
+        <el-date-picker
+                        v-model="form.flightDate"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+        </el-date-picker>
         </el-form-item>
         <el-form-item  label="currency" prop="currency">
         <el-input type="text"  v-model="form.currency"></el-input>
@@ -179,7 +184,12 @@
         <el-input type="text"   v-model="form.shipperCertifies"></el-input>
         </el-form-item>
         <el-form-item  label="excuted_on" prop="excutedOn">
-        <el-date-picker type="date"  v-model="form.excutedOn" style="width: 206.4px;"></el-date-picker>
+        <el-date-picker
+                        v-model="form.excutedOn"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+        </el-date-picker>
         </el-form-item>
         <el-form-item  label="place" prop="place">
         <el-input type="text"   v-model="form.place"></el-input>
@@ -368,8 +378,6 @@
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{
                 if(valid){
-                _this.form.flightDate.setDate(_this.form.flightDate.getDate()+1)
-                _this.form.excutedOn.setDate(_this.form.excutedOn.getDate()+1)
                 var param=_this.form;
                 _this.$api.insertmawb(param).then(function (response) {
                     var type=response.msg;

@@ -22,6 +22,8 @@ export default{
         reset:'重置',
         scan:'扫描',
         delete:'删除',
-        newitem:'新增项目'
+        newitem:'新增项目',
+        print:'打印',
+        detail:"详情"
     }
 }

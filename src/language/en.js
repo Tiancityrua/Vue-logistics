@@ -22,6 +22,8 @@ export default{
         reset:'reset',
         scan:'scan',
         delete:'delete',
-        newitem:'newitem'
+        newitem:'newitem',
+        print:'print',
+        detail:"detail"
     }
 }

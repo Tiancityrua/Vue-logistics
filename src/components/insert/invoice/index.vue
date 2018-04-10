@@ -5,7 +5,12 @@
         <el-input type="text" v-model="form.form1.invoiceNo"></el-input>
       </el-form-item>
       <el-form-item  label="date" prop="date">
-         <el-date-picker type="date" style="width: 206.4px;" v-model="form.form1.date"></el-date-picker>
+            <el-date-picker
+                        v-model="form.form1.date"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
       </el-form-item>
       <el-form-item  label="terms" prop="">
         <el-input type="text" v-model="form.form1.terms"></el-input>
@@ -58,15 +63,15 @@
       data(){
         return{
           form:{
-          form2:{
+            form2:{
             domains:[
               {
                 description:'',
                 amount:''
               }
             ],
-          },
-          form1:{
+            },
+            form1:{
             invoiceNo:'',
             date:'',
             terms:'',
@@ -76,16 +81,8 @@
             dstn:'',
             nature:'',
             total:''
-          }
+            }
           },
-          rules:{
-            invoiceNo:[
-              {required: true,trigger: 'blur' }
-            ],
-            date:[
-             {required: true,trigger: 'blur' }
-            ]
-          }
         }
       },
       methods:{
@@ -100,6 +97,8 @@
         onSubmit(formname){
           let _this=this
           var list=[]
+          this.$refs[formname].validate((valid)=>{
+          if(valid){
           for(var i=0;i<_this.form.form2.domains.length;i++){
               list.push(
                 {
@@ -109,9 +108,6 @@
                 }
               )     
           }
-          this.$refs[formname].validate((valid)=>{
-          if(valid){
-          _this.form.form1.date.setDate(_this.form.form1.date.getDate()+1)
           _this.$api.insertinvoice(_this.form.form1).then(function(response){
                     var type=response.msg;
                     var message=response.event;
@@ -128,6 +124,9 @@
                         _this.$message.error(message)
                     }
           })
+          }
+          else{
+            return false
           }
           })
         },

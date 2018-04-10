@@ -45,3 +45,11 @@ export const insertinvoice=params=>{
 export const insertdetail=params=>{
     return ztc.post(`/freight/insert/invoice/detail`,params).then(res=>res.data)  
 }
+
+export const selectinvoice=params=>{
+    return ztc.post(`/freight/select/invoice/invoice`,params).then(res=>res.data)  
+}
+
+export const selectdetail=params=>{
+    return ztc.post(`/freight/select/invoice/detail`,params).then(res=>res.data)  
+}

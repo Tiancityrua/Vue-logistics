@@ -79,7 +79,7 @@
                         fixed="left"
                         prop="mawb"
                         label="mawb"
-                        width="180">
+                        width="120">
                 </el-table-column>
                 <el-table-column
                         prop="shipperNo"
@@ -396,7 +396,7 @@
                         label="operating"
                         width="100">
                      <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="primary" size="medium">{{$t('main.update')}}</el-button>
+                    <el-button @click="update(scope.row)" type="primary" size="medium">{{$t('main.update')}}</el-button>
                      </template>
                 </el-table-column>
             </el-table>
@@ -465,9 +465,6 @@
               }, err => {
               })
 
-          },
-          handleClick(row){
-            this.$router.push({name: 'updatemawb',params:row})
           }
       }
   }
