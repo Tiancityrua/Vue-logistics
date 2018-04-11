@@ -94,8 +94,14 @@
                         label="operating"
                         width="240">
                     <template slot-scope="scope">
-                    <el-button @click="update(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
-                    <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
+                    <el-button @click="formvisible=true" type="primary" size="small">{{$t('main.update')}}</el-button>
+                    <el-dialog title="invoice" :visible.sync="formvisible">
+                         <el-table :data="gridData">
+    <el-table-column property="date" label="日期" width="150"></el-table-column>
+    <el-table-column property="name" label="姓名" width="200"></el-table-column>
+    <el-table-column property="address" label="地址"></el-table-column>
+                        </el-table>
+                    </el-dialog>
                     <el-popover
                     ref="detail"
                     placement="left"
@@ -108,6 +114,7 @@
                     </el-table>
                     </el-popover>
                     <el-button v-popover:detail @click="detail(scope.row.invoiceNo)" type="primary" size="small">{{$t('main.detail')}}</el-button>
+                    <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
                      </template>
                     </el-table-column>
                     </el-table>
@@ -121,17 +128,37 @@
     name: 'selectinvoice',
     data(){
         return{
-            form:{
+            form:{  
                 invoiceNo:'',
                 date1:'',
                 date2:'',
                 invoiceTo:'',
                 billLaden:'',
                 origin:'',
-                dstn:''
+                dstn:'',
+            form2:{
+            domains:[
+              {
+                description:'',
+                amount:''
+              }
+            ],
+            },
+            form1:{
+            invoiceNo:'',
+            date:'',
+            terms:'',
+            invoiceTo:'',
+            billLaden:'',
+            origin:'',
+            dstn:'',
+            nature:'',
+            total:''
+            }
             },
             tableData:[],
-            gridData:[]
+            gridData:[],
+            formvisible:false
         }
 
     },
@@ -148,7 +175,6 @@
             var param={
                 invoiceNo:invoiceno
             }
-            debugger
               this.$api.selectdetail(param).then(res=>{
                   _this.gridData=res.data;
               })

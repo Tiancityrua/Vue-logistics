@@ -19,7 +19,7 @@
         <el-input type="textarea" autosize  v-model="form.form1.invoiceTo"></el-input>
       </el-form-item>
       <el-form-item  label="bill_laden" prop="">
-        <el-input type="text" v-model="form.form1.billLaden"></el-input>
+        <el-input type="text" v-model="form.form1.billLaden" @blur="semaplcace(form.form1.billLaden)"></el-input>
       </el-form-item>
        <el-form-item  label="origin" prop="">
         <el-input type="text" v-model="form.form1.origin"></el-input>
@@ -86,6 +86,23 @@
         }
       },
       methods:{
+        semaplcace(value){
+          let _this=this
+          var param={
+            mawb:value
+          }
+          debugger
+            if(value.indexOf('-')!=-1){
+              this.$api.selectmaplace(param).then(function(response){
+                debugger
+                _this.form.form1.origin=response["data"][0].air_departure
+                _this.form.form1.dstn=response["data"][0].air_dest
+              })
+            }
+            else{
+
+            }
+        },
         addDomain(){
           this.form.form2.domains.push({
               description:'',
