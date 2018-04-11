@@ -57,3 +57,11 @@ export const selectdetail=params=>{
 export const selectmaplace=params=>{
     return ztc.post(`/freight/select/bill/maplace`,params).then(res=>res.data)  
 }
+
+export const insertnote=params=>{
+    return ztc.post(`/freight/insert/invoice/delivery`,params).then(res=>res.data) 
+}
+
+export const selectnote=params=>{
+    return ztc.post(`/freight/select/invoice/delivery`,params).then(res=>res.data) 
+}

@@ -10,10 +10,13 @@ export default{
     route:{
         mawb:'mawb',
         invoice:'invoice',
+        note:'note',
         selectmawb:'selectmawb',
         insertmawb:'insertmawb',
         selectinvoice:'selectinvoice',
-        insertinvoice:'insertinvoice'
+        insertinvoice:'insertinvoice',
+        selectnote:'selectnote',
+        insertnote:'insertnote'
     },
     main:{
         search:'search',

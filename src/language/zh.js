@@ -10,10 +10,13 @@ export default{
     route:{
         mawb:'主单',
         invoice:'发票',
+        note:'货单',
         selectmawb:'主单查找',
         insertmawb:'主单插入',
         selectinvoice:'发票查找',
-        insertinvoice:'发票插入'
+        insertinvoice:'发票插入',
+        selectnote:'货单查找',
+        insertnote:'货单插入'
     },
     main:{
         search:'查找',
