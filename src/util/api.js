@@ -65,3 +65,7 @@ export const insertnote=params=>{
 export const selectnote=params=>{
     return ztc.post(`/freight/select/invoice/delivery`,params).then(res=>res.data) 
 }
+
+export const updatenote=params=>{
+    return ztc.post(`/freight/`,params).then(res=>res.data) 
+}

@@ -53,8 +53,7 @@
         </el-form-item>  
         <el-form-item label="               ">
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button> 
-        </el-form-item>  
-        
+        </el-form-item>          
       </el-form>
   </div>
 </template>
@@ -113,7 +112,7 @@
             type:[
                 {required: true,trigger: 'blur' }
             ]
-    }
+        }
         }
       },
       methods:{

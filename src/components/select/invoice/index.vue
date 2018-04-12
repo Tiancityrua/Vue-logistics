@@ -35,7 +35,8 @@
             <el-form-item label="         ">
                 <el-button type="primary" @click="onSubmit" style="width: 206.4px;">{{$t('main.search')}}</el-button>
             </el-form-item>
-            <div style="text-align: center">
+        </el-form>
+        <div style="text-align: center">
                     <el-table
                     border="true"
                     max-height="800"
@@ -94,14 +95,7 @@
                         label="operating"
                         width="240">
                     <template slot-scope="scope">
-                    <el-button @click="formvisible=true" type="primary" size="small">{{$t('main.update')}}</el-button>
-                    <el-dialog title="invoice" :visible.sync="formvisible">
-                         <el-table :data="gridData">
-    <el-table-column property="date" label="日期" width="150"></el-table-column>
-    <el-table-column property="name" label="姓名" width="200"></el-table-column>
-    <el-table-column property="address" label="地址"></el-table-column>
-                        </el-table>
-                    </el-dialog>
+                    <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
                     <el-popover
                     ref="detail"
                     placement="left"
@@ -119,7 +113,54 @@
                     </el-table-column>
                     </el-table>
             </div>
-        </el-form>
+            <el-dialog title="invoice" :visible.sync="dialogFormVisible">
+                <el-form ref="form1"  :model="form1" label-width="125px" inline :rules="rules" size="large" >
+        <el-form-item  label="invoice_no" prop="">
+        <el-input type="text" v-model="form1.invoiceNo"></el-input>
+        </el-form-item>
+      <el-form-item  label="date" prop="form1date">
+            <el-date-picker
+                        v-model="form1.date"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+      </el-form-item>
+      <el-form-item  label="terms" prop="">
+        <el-input type="text" v-model="form1.terms"></el-input>
+      </el-form-item>
+      <el-form-item  label="invoice_to" prop="">
+        <el-input type="textarea" autosize  v-model="form1.invoiceTo"></el-input>
+      </el-form-item>
+      <el-form-item  label="bill_laden" prop="">
+        <el-input type="text" v-model="form1.billLaden"></el-input>
+      </el-form-item>
+       <el-form-item  label="origin" prop="">
+        <el-input type="text" v-model="form1.origin"></el-input>
+      </el-form-item>
+      <el-form-item  label="dstn" prop="">
+        <el-input type="text" v-model="form1.dstn"></el-input>
+      </el-form-item>
+      <el-form-item  label="nature" prop="">
+        <el-input type="textarea" autosize v-model="form1.nature"></el-input>
+        </el-form-item>
+        <el-form-item  label="total" prop="">
+        <el-input type="text" v-model="form1.total"></el-input>
+      </el-form-item> 
+         <el-form-item
+        v-for="(domain, index) in gridData"
+        :label="''+index"
+        :key="domain.key"
+         >
+     <el-input v-model="domain.description" style="width:206.4px" placeholder="description"></el-input>
+    <el-input v-model="domain.amount" style="width:206.4px" placeholder="amount"></el-input>
+    </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="update('form1')">确 定</el-button>
+    </div>
+    </el-dialog>
     </div>
 </template>
 
@@ -136,14 +177,10 @@
                 billLaden:'',
                 origin:'',
                 dstn:'',
-            form2:{
-            domains:[
-              {
-                description:'',
-                amount:''
-              }
-            ],
             },
+            tableData:[],
+            gridData:[],
+            dialogFormVisible:false,
             form1:{
             invoiceNo:'',
             date:'',
@@ -155,14 +192,24 @@
             nature:'',
             total:''
             }
-            },
-            tableData:[],
-            gridData:[],
-            formvisible:false
         }
-
     },
     methods:{
+        editShow(row){
+            var role=this.$store.getters.role
+                if(role=='manager'){
+                this.form1=row
+                this.dialogFormVisible=true
+                }
+                else{
+                    this.$message(
+                        {
+                            message:'permission denied',
+                            type:'warning'
+                        }
+                    )
+                }
+        },
          onSubmit() {
               let _this=this;
               var param=this.form;
