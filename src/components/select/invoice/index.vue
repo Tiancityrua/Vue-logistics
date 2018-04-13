@@ -115,10 +115,10 @@
             </div>
             <el-dialog title="invoice" :visible.sync="dialogFormVisible">
                 <el-form ref="form1"  :model="form1" label-width="125px" inline :rules="rules" size="large" >
-        <el-form-item  label="invoice_no" prop="">
+        <el-form-item  label="invoice_no" prop="invoiceNo">
         <el-input type="text" v-model="form1.invoiceNo"></el-input>
         </el-form-item>
-      <el-form-item  label="date" prop="form1date">
+      <el-form-item  label="date" prop="date">
             <el-date-picker
                         v-model="form1.date"
                         type="date"
@@ -126,39 +126,39 @@
                         value-format="yyyy-MM-dd" style="width: 206.4px;">
             </el-date-picker>
       </el-form-item>
-      <el-form-item  label="terms" prop="">
+      <el-form-item  label="terms" prop="terms">
         <el-input type="text" v-model="form1.terms"></el-input>
       </el-form-item>
-      <el-form-item  label="invoice_to" prop="">
+      <el-form-item  label="invoice_to" prop="invoiceTo">
         <el-input type="textarea" autosize  v-model="form1.invoiceTo"></el-input>
       </el-form-item>
-      <el-form-item  label="bill_laden" prop="">
+      <el-form-item  label="bill_laden" prop="billLaden">
         <el-input type="text" v-model="form1.billLaden"></el-input>
       </el-form-item>
-       <el-form-item  label="origin" prop="">
+       <el-form-item  label="origin" prop="origin">
         <el-input type="text" v-model="form1.origin"></el-input>
       </el-form-item>
-      <el-form-item  label="dstn" prop="">
+      <el-form-item  label="dstn" prop="dstn">
         <el-input type="text" v-model="form1.dstn"></el-input>
       </el-form-item>
-      <el-form-item  label="nature" prop="">
+      <el-form-item  label="nature" prop="nature">
         <el-input type="textarea" autosize v-model="form1.nature"></el-input>
         </el-form-item>
-        <el-form-item  label="total" prop="">
+        <el-form-item  label="total" prop="total">
         <el-input type="text" v-model="form1.total"></el-input>
       </el-form-item> 
          <el-form-item
-        v-for="(domain, index) in gridData"
+        v-for="(domain, index) in form2.gridData"
         :label="''+index"
         :key="domain.key"
          >
-     <el-input v-model="domain.description" style="width:206.4px" placeholder="description"></el-input>
+     <el-input v-model="domain.description" style="width:206.4px" placeholder="description" :disabled="true"></el-input>
     <el-input v-model="domain.amount" style="width:206.4px" placeholder="amount"></el-input>
     </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="update('form1')">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">{{$t('main.cancel')}}</el-button>
+        <el-button type="primary" @click="update('form1')">{{$t('main.confirm')}}</el-button>
     </div>
     </el-dialog>
     </div>
@@ -191,14 +191,54 @@
             dstn:'',
             nature:'',
             total:''
+            },
+            form2:{
+                gridData:[]
+            },
+            rules:{
+                invoiceNo:[
+                    {required: true,trigger: 'change' }
+                ],
+                date:[
+                     {required: true,trigger: 'change' }
+                ],
+                terms:[
+                     {required: true,trigger: 'change' }
+                ],
+                invoiceTo:[
+                     {required: true,trigger: 'change' }
+                ],
+                billLaden:[
+                     {required: true,trigger: 'change' }
+                ],
+                origin:[
+                     {required: true,trigger: 'change' }
+                ],
+                dstn:[
+                     {required: true,trigger: 'change' }
+                ],
+                nature:[
+                     {required: true,trigger: 'change' }
+                ],  
+                total:[
+                     {required: true,trigger: 'change' }
+                ]
             }
+
         }
     },
     methods:{
         editShow(row){
             var role=this.$store.getters.role
+            let _this=this
                 if(role=='manager'){
                 this.form1=row
+                var param={
+                invoiceNo:this.form1.invoiceNo
+                }
+                this.$api.selectdetail(param).then(res=>{
+                  _this.form2.gridData=res.data;
+                })
                 this.dialogFormVisible=true
                 }
                 else{
@@ -225,6 +265,45 @@
               this.$api.selectdetail(param).then(res=>{
                   _this.gridData=res.data;
               })
+          },
+          update(formname){
+                let _this=this;
+                var list=[]
+                this.$refs[formname].validate((valid)=>{
+                if(valid){
+                for(var i=0;i<_this.form2.gridData.length;i++){
+                list.push(
+                {
+                  invoiceNo:_this.form1.invoiceNo,
+                  description:_this.form2.gridData[i].description,
+                  amount:_this.form2.gridData[i].amount
+                }
+                )     
+                }
+                var param=_this.form1;
+                _this.$api.updateinvoice(param).then(function (response) {
+                    var type=response.msg;
+                    var message=response.event;
+                    if(type=='success'){
+                        debugger
+                        _this.$api.updatedetail(list)
+                        _this.dialogFormVisible=false
+                        _this.$message(
+                            {
+                                message:message,
+                                type:'success'
+                            }
+                        )
+                    }
+                    else {
+                        _this.$message.error(message)
+                    }
+                })
+            }
+            else{
+                return false;
+            }
+            })
           }
 
     }

@@ -27,6 +27,8 @@ export default{
         delete:'delete',
         newitem:'newitem',
         print:'print',
-        detail:"detail"
+        detail:"detail",
+        confirm:'confirm',
+        cancel:'cancel'
     }
 }

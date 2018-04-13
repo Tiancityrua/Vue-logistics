@@ -93,7 +93,7 @@
             </div>
         <el-dialog title="note" :visible.sync="dialogFormVisible">
         <el-form ref="form1"  :model="form1" label-width="125px" inline :rules="rules" size="large">
-        <el-form-item  label="hawb">
+        <el-form-item  label="hawb" prop="hawb">
         <el-input type="text" v-model="form1.hawb" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item  label="date" prop="date">
@@ -128,7 +128,7 @@
             </el-date-picker>
         </el-form-item>
         <el-form-item  label="type" prop="type">
-        <el-select v-model="form1.type" placeholder="select" style="width: 206.4px;">
+        <el-select v-model="form1.type" placeholder="select" style="width: 206.4px;" :disabled="true">
             <el-option
              v-for="item in options"
             :key="item.value"
@@ -139,8 +139,8 @@
         </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="update('form1')">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">{{$t('main.cancel')}}</el-button>
+        <el-button type="primary" @click="update('form1')">{{$t('main.confirm')}}</el-button>
         </div>
         </el-dialog>
     </div>
@@ -152,6 +152,9 @@
         data(){
             return{
             rules:{
+            hawb:[
+                 {required: true,trigger: 'change' }
+            ],
             date:[
                 {required: true,trigger: 'change' }
             ],
@@ -234,12 +237,12 @@
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{
                 if(valid){
-                this.dialogFormVisible=false
                 var param=_this.form1;
                 _this.$api.updatenote(param).then(function (response) {
                     var type=response.msg;
                     var message=response.event;
                     if(type=='success'){
+                        _this.dialogFormVisible=false
                         _this.$message(
                             {
                                 message:message,

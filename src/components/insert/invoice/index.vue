@@ -1,10 +1,10 @@
 <template>
   <div  class="app-container">
       <el-form ref="form"  :model="form" label-width="125px" inline :rules="rules" size="large" >
-        <el-form-item  label="invoice_no" prop="form1invoiceNo">
+        <el-form-item  label="invoice_no" prop="invoiceNo">
         <el-input type="text" v-model="form.form1.invoiceNo"></el-input>
         </el-form-item>
-      <el-form-item  label="date" prop="form1date">
+      <el-form-item  label="date" prop="date">
             <el-date-picker
                         v-model="form.form1.date"
                         type="date"
@@ -84,10 +84,10 @@
             }
           },
           rules:{
-            form1date:[
+            date:[
                {required: true,trigger: 'blur' }
             ],
-            form1invoiceNo:[
+            invoiceNo:[
                 {required: true,trigger: 'blur' }
             ]
           }

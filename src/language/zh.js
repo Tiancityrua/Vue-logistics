@@ -27,6 +27,8 @@ export default{
         delete:'删除',
         newitem:'新增项目',
         print:'打印',
-        detail:"详情"
+        detail:"详情",
+        confirm:'确认',
+        cancel:'取消'
     }
 }

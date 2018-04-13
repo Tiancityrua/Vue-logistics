@@ -604,8 +604,8 @@
         </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="update('form')">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">{{$t('main.cancel')}}</el-button>
+        <el-button type="primary" @click="update('form')">{{$t('main.confirm')}}</el-button>
         </div>
         </el-dialog>
     </div>
@@ -697,7 +697,7 @@
                 signatureCarrier:'',        
             },
             rules:{
-                    mawb:[
+                  mawb:[
                        {required: true,trigger: 'change' }
                   ],
                   airDeparture:[
@@ -789,6 +789,33 @@
           this.getConsignee()
       },
       methods: {
+          update(formname){
+                let _this=this;
+                this.$refs[formname].validate((valid)=>{
+                if(valid){
+                var param=_this.form;
+                _this.$api.updatemawb(param).then(function (response) {
+                    var type=response.msg;
+                    var message=response.event;
+                    if(type=='success'){
+                        _this.dialogFormVisible=false
+                        _this.$message(
+                            {
+                                message:message,
+                                type:'success'
+                            }
+                        )
+                    }
+                    else {
+                        _this.$message.error(message)
+                    }
+                })
+            }
+            else{
+                return false;
+            }
+            })
+            },
           editShow(row){
                 var role=this.$store.getters.role
                 if(role=='manager'){
