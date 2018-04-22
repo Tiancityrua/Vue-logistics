@@ -102,13 +102,15 @@
           debugger
             if(value.indexOf('-')!=-1){
               this.$api.selectmaplace(param).then(function(response){
-                debugger
                 _this.form.form1.origin=response["data"][0].air_departure
                 _this.form.form1.dstn=response["data"][0].air_dest
               })
             }
             else{
-
+              this.$api.selecthaplace(param).then(function(response){
+                _this.form.form1.origin=response["data"][0].air_departure
+                _this.form.form1.dstn=response["data"][0].air_dest
+              })
             }
         },
         addDomain(){

@@ -12,6 +12,26 @@ ztc.interceptors.response.use(res => {
 
 })
 
+export const gethaShips=params => {
+    return ztc.get(`/freight/select/bill/hashipper`, {params}).then(res => res.data)
+}
+
+export const gethaConsignees=params=>{
+    return ztc.get(`/freight/select/bill/haconsignee`, {params}).then(res => res.data)
+}
+
+export const selecthawb=params=>{
+    return ztc.post(`/freight/select/bill/hawb`,params).then(res=>res.data)
+}
+
+export const inserthawb=params=>{
+    return ztc.post(`/freight/insert/bill/hawb`,params).then(res=>res.data)
+}
+
+export const updatehawb=params=>{
+    return ztc.post(`/freight/update/bill/hawb`,params).then(res=>res.data)
+}
+
 export const getmaShips=params => {
     return ztc.get(`/freight/select/bill/mashipper`, {params}).then(res => res.data)
 }
@@ -76,4 +96,8 @@ export const updateinvoice=params=>{
 
 export const updatedetail=params=>{
     return ztc.post(`/freight/update/invoice/detail`,params).then(res=>res.data) 
+}
+
+export const selecthaplace=params=>{
+    return ztc.post(`/freight/select/bill/haplace`,params).then(res=>res.data) 
 }

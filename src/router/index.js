@@ -11,6 +11,8 @@ import insertinvoice from '../components/insert/invoice/index'
 import selectinvoice from '../components/select/invoice/index'
 import insertnote from '../components/insert/note/index'
 import selectnote from '../components/select/note/index'
+import inserthawb from '../components/insert/hawb/index'
+import selecthawb from '../components/select/hawb/index'
 
 export const constantRoutermap=[
   {path:'/login',component: login,hidden:true},
@@ -50,6 +52,31 @@ export const asyncRoutermap=[
       name:'selectmawb',
       meta:{
         title:'selectmawb',
+      }
+    }
+    ]
+  },
+  {
+    path:'/hawb',
+    component:main,
+    redirect:'/hawb/select',
+    meta:{title:'hawb'},
+    children:[
+    {
+      path:'insert',
+      component:inserthawb,
+      name:'inserthawb',
+      meta:{
+        title:'inserthawb',
+        role:'manager'
+      }
+    },
+    {
+      path:'select',
+      component:selecthawb,
+      name:'selecthawb',
+      meta:{
+        title:'selecthawb',
       }
     }
     ]
