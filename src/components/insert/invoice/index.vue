@@ -85,10 +85,7 @@
           },
           rules:{
             date:[
-               {required: true,trigger: 'blur' }
-            ],
-            invoiceNo:[
-                {required: true,trigger: 'blur' }
+                {required: true,message:'wocaoniubi',trigger: 'blur' }
             ]
           }
         }
@@ -96,20 +93,19 @@
       methods:{
         semaplcace(value){
           let _this=this
-          var param={
-            mawb:value
-          }
-          debugger
             if(value.indexOf('-')!=-1){
+            var param={mawb:value}
               this.$api.selectmaplace(param).then(function(response){
                 _this.form.form1.origin=response["data"][0].air_departure
                 _this.form.form1.dstn=response["data"][0].air_dest
               })
             }
             else{
+            var param={hawb:value}
               this.$api.selecthaplace(param).then(function(response){
                 _this.form.form1.origin=response["data"][0].air_departure
                 _this.form.form1.dstn=response["data"][0].air_dest
+                _this.form.form1.nature=response["data"][0].nature
               })
             }
         },

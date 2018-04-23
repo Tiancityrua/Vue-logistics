@@ -5,7 +5,7 @@
         <el-input type="text"  v-model="form.hawb"></el-input>
         </el-form-item>
         <el-form-item  label="mawb" prop="mawb">
-        <el-input type="text"  v-model="form.mawb"></el-input>
+        <el-input type="text"  v-model="form.mawb"  @blur="sesame(form.mawb)"></el-input>
         </el-form-item>
         <el-form-item  label="shipper_no" prop="shipperNo">
         <el-input type="text"  v-model="form.shipperNo"></el-input>
@@ -391,6 +391,33 @@
           }
       },
       methods:{
+          sesame(value){
+            let _this=this
+            var param={mawb:value}
+            this.$api.selectsame(param).then(function(response){
+                _this.form.airDeparture=response["data"][0].air_departure
+                _this.form.airDest=response["data"][0].air_dest
+                _this.form.to1=response["data"][0].to1
+                _this.form.by1=response["data"][0].by1
+                _this.form.to2=response["data"][0].to2
+                _this.form.by2=response["data"][0].by2
+                _this.form.to3=response["data"][0].to3
+                _this.form.by3=response["data"][0].by3
+                _this.form.currency=response["data"][0].currency
+                _this.form.currencyRates=response["data"][0].currency_rates
+                var time=response["data"][0].excuted_on
+                var newdate=new Date()
+                newdate.setTime(time)
+                _this.form.excutedOn=newdate
+                _this.form.flightNo=response["data"][0].flight_no
+                var time1=response["data"][0].flight_date
+                var newdate1=new Date()
+                newdate1.setTime(time1)
+                _this.form.flightDate=newdate1
+                _this.form.place=response["data"][0].place
+            }
+            )
+          },
             onSubmit(formname){
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{
@@ -419,7 +446,7 @@
     },
     resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+    }
 }
 }
 </script>

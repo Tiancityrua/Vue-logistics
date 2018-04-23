@@ -101,3 +101,7 @@ export const updatedetail=params=>{
 export const selecthaplace=params=>{
     return ztc.post(`/freight/select/bill/haplace`,params).then(res=>res.data) 
 }
+
+export const selectsame=params=>{
+    return ztc.post(`/freight/select/bill/same`,params).then(res=>res.data) 
+}
