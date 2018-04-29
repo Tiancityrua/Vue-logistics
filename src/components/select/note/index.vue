@@ -21,7 +21,14 @@
                 <el-input  v-model="form.hawb"></el-input>
             </el-form-item>
             <el-form-item label="type">
-                <el-input  v-model="form.type"></el-input>
+            <el-select v-model="form.type" placeholder="select" style="width: 206.4px;" clearable>
+            <el-option
+             v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            </el-option>
+            </el-select>
             </el-form-item>
             <el-form-item label="         ">
                 <el-button type="primary" @click="onSubmit" style="width: 206.4px;">{{$t('main.search')}}</el-button>

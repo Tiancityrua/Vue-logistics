@@ -2,7 +2,14 @@
   <div  class="app-container">
       <el-form ref="form"  :model="form" label-width="125px" inline :rules="rules" size="large" >
         <el-form-item  label="invoice_no" prop="invoiceNo">
-        <el-input type="text" v-model="form.form1.invoiceNo"></el-input>
+       <el-select
+                    v-model="form.form1.shipper"
+                    clearable
+                    filterable
+                    style="width: 206.4px;">
+                    <el-option v-for="list in nos" :key="list.value"
+                                :value="list.value" :label="list.label"></el-option>
+        </el-select>
         </el-form-item>
       <el-form-item  label="date" prop="date">
             <el-date-picker
@@ -83,12 +90,11 @@
             total:''
             }
           },
-          rules:{
-            date:[
-                {required: true,message:'wocaoniubi',trigger: 'blur' }
-            ]
-          }
+          nos:null
         }
+      },
+      mounted() {
+          this.getnos()
       },
       methods:{
         semaplcace(value){
@@ -161,7 +167,23 @@
         },
         resetForm(formName) {
         this.$refs[formName].resetFields();
-        }
+        },
+        getnos(){
+                  this.$api.selectno().then(res => {
+                    debugger
+                  const result = []
+                  result.push({
+                    value:"DVI"+res.dvi,
+                    label:"DVI"+res.dvi
+                  })
+                  result.push({
+                    value:"IVD"+res.ivd,
+                    label:"IVD"+res.ivd
+                  })
+                  this.nos = result
+              }, err => {
+              })
+              }
       }
       }
 </script>

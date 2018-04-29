@@ -105,3 +105,7 @@ export const selecthaplace=params=>{
 export const selectsame=params=>{
     return ztc.post(`/freight/select/bill/same`,params).then(res=>res.data) 
 }
+
+export const selectno=params=>{
+    return ztc.get(`/freight/select/invoice/no`,{params}).then(res=>res.data) 
+}
