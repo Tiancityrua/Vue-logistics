@@ -402,9 +402,10 @@
                 <el-table-column
                         fixed="right"
                         label="operating"
-                        width="100">
+                        width="150">
                      <template slot-scope="scope">
-                    <el-button @click="editShow(scope.row)" type="primary" size="medium">{{$t('main.update')}}</el-button>
+                    <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
+                <el-button @click="deletehawb(scope.row.hawb)" type="danger" size="small">{{$t('main.delete')}}</el-button>
                      </template>
                 </el-table-column>
             </el-table>
@@ -840,6 +841,36 @@
                 }
                 else{
                     this.$message(
+                        {
+                            message:'permission denied',
+                            type:'warning'
+                        }
+                    )
+                }
+          },
+          deletehawb(hawb){
+                var role=this.$store.getters.role
+                if(role=='manager'){
+                var param={"hawb":hawb}
+                this.$confirm('确认删除？','提示',{
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(()=>{
+                this.$api.deletehawb(param).then(res=>{
+                        this.$message({
+                        type: res.msg,
+                        message: res.event
+                        })
+                })}).catch(()=>{
+                        this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                        })
+                })
+                }
+                else{
+                 this.$message(
                         {
                             message:'permission denied',
                             type:'warning'

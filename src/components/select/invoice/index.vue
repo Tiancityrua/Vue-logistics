@@ -93,9 +93,8 @@
                     <el-table-column
                         fixed="right"
                         label="operating"
-                        width="240">
+                        width="300">
                     <template slot-scope="scope">
-                    <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
                     <el-popover
                     ref="detail"
                     placement="left"
@@ -108,6 +107,8 @@
                     </el-table>
                     </el-popover>
                     <el-button v-popover:detail @click="detail(scope.row.invoiceNo)" type="primary" size="small">{{$t('main.detail')}}</el-button>
+                    <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
+                    <el-button @click="deleteinvoice(scope.row.invoiceNo)" type="danger" size="small">{{$t('main.delete')}}</el-button>
                     <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
                      </template>
                     </el-table-column>
@@ -304,6 +305,36 @@
                 return false;
             }
             })
+          },
+          deleteinvoice(invoiceNo){
+              var role=this.$store.getters.role
+            if(role=='manager'){
+              var param={"invoiceNo":invoiceNo}
+                this.$confirm('确认删除？','提示',{
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(()=>{
+                this.$api.deleteinvoice(param).then(res=>{
+                        this.$message({
+                        type: res.msg,
+                        message: res.event
+                        })
+                })}).catch(()=>{
+                        this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                        })
+                })
+          }
+          else{
+              this.$message(
+                        {
+                            message:'permission denied',
+                            type:'warning'
+                        }
+                )
+          }
           }
 
     }

@@ -109,3 +109,19 @@ export const selectsame=params=>{
 export const selectno=params=>{
     return ztc.get(`/freight/select/invoice/no`,{params}).then(res=>res.data) 
 }
+
+export const deletemawb=params=>{
+    return ztc.post(`/freight/delete/bill/mawb`,params).then(res=>res.data) 
+}
+
+export const deletehawb=params=>{
+    return ztc.post(`/freight/delete/bill/hawb`,params).then(res=>res.data) 
+}
+
+export const deleteinvoice=params=>{
+    return ztc.post(`/freight/delete/invoice/invoice`,params).then(res=>res.data) 
+}
+
+export const deletenote=params=>{
+    return ztc.post(`/freight/delete/invoice/note`,params).then(res=>res.data) 
+}
