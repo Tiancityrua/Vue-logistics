@@ -3,7 +3,7 @@
       <el-form ref="form"  :model="form" label-width="125px" inline :rules="rules" size="large" >
         <el-form-item  label="invoice_no" prop="invoiceNo">
        <el-select
-                    v-model="form.form1.shipper"
+                    v-model="form.form1.invoiceNo"
                     clearable
                     filterable
                     style="width: 206.4px;">
@@ -44,11 +44,11 @@
         <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
         <el-form-item label="               ">
-        <el-button  type="success" style="width:206.4px">{{$t('main.scan')}}</el-button>
+        <el-button  type="success" style="width:206.4px" @click="imageShow=true">{{$t('main.scan')}}</el-button>
         </el-form-item>  
         <el-form-item label="               ">
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button> 
-        </el-form-item>  
+        </el-form-item>
          <el-form-item
         v-for="(domain, index) in form.form2.domains"
         :label="''+index"
@@ -62,8 +62,24 @@
     <el-button @click="addDomain()">{{$t('main.newitem')}}</el-button>
   </el-form-item>
       </el-form>
+      <el-dialog :visible.sync="imageShow">
+  <el-upload
+  class="upload-demo"
+  drag
+  action="http://localhost:8080/freight/upload/invoice/invoice"
+  name="file"
+  :on-success="successup"
+  >
+  <i class="el-icon-upload"></i>  
+  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+</el-upload>
+      </el-dialog>
   </div>
 </template>
+<style lang="less">
+
+</style>
+
 <script>
       export default{
       name:'insertinvoice',
@@ -90,13 +106,36 @@
             total:''
             }
           },
-          nos:null
+          nos:null,
+          imageShow:false
         }
       },
       mounted() {
           this.getnos()
       },
       methods:{
+        successup(response){
+          let _this=this
+          console.log(response)
+          this.imageShow=false
+          if(response.msg=='success'){
+          var list=response.data.date.split("/")
+          this.form.form1.date=list[2]+"-"+list[1]+"-"+list[0]
+          this.form.form1.invoiceTo=response.data.invoiceTo
+          this.form.form1.billLaden=response.data.billLaden
+          this.form.form1.origin=response.data.origin
+          this.form.form1.dstn=response.data.dstn
+          this.form.form1.nature=response.data.nature
+          }
+          else{
+            _this.$message(
+              {
+                message:response.event,
+                type:response.msg
+              }
+            )
+          }
+        },
         semaplcace(value){
           let _this=this
             if(value.indexOf('-')!=-1){
@@ -168,9 +207,17 @@
         resetForm(formName) {
         this.$refs[formName].resetFields();
         },
-        getnos(){
-                  this.$api.selectno().then(res => {
-                    debugger
+        getnos(){ 
+                  var date=new Date()
+                  var day=date.getDate()
+                  var month=date.getMonth()
+                  var year=date.getFullYear()
+                  month++
+                  day=day<10?'0'+day.toString():day
+                  month=month<10?'0'+month.toString():month
+                  var time=year.toString()+month+day
+                  var param={"time":time}
+                  this.$api.selectno(param).then(res => {
                   const result = []
                   result.push({
                     value:"DVI"+res.dvi,
