@@ -207,12 +207,24 @@
         <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
          <el-form-item label="               ">
-        <el-button  type="success" style="width:206.4px">{{$t('main.scan')}}</el-button>
+        <el-button  type="success" style="width:206.4px" @click="imageShow=true">{{$t('main.scan')}}</el-button>
         </el-form-item>  
         <el-form-item label="               ">
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button>
         </el-form-item>  
     </el-form>
+    <el-dialog :visible.sync="imageShow">
+  <el-upload
+  class="upload-demo"
+  drag
+  action="http://localhost:8080/freight/upload/bill/hawb"
+  name="file"
+  :on-success="successup"
+  >
+  <i class="el-icon-upload"></i>  
+  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+</el-upload>
+      </el-dialog>
   </div>
 </template>
 <style  lang="less">
@@ -233,6 +245,7 @@
       name:'insertmawb',
       data(){
           return{
+              imageShow:false,
               form:{
                 hawb:'',
                 mawb:'',
@@ -391,6 +404,38 @@
           }
       },
       methods:{
+          successup(response){
+            let _this=this
+            this.imageShow=false
+            console.log(response)
+            if(response.msg=='success'){
+                this.form.accountInfo=response.data.accountinfo
+                this.form.airDeparture=response.data.airdeparture
+                this.form.airDest=response.data.airdest
+                this.form.amountInsurance=response.data.amountinsurance
+                this.form.by1=response.data.by1
+                this.form.consignee=response.data.consignee
+                this.form.currency=response.data.currency
+                this.form.declaredCarriage=response.data.declaredcarriage
+                this.form.declaredCustoms=response.data.declaredcustoms
+                this.form.flightNo=response.data.flightno
+                this.form.handlingInfo=response.data.handlinginfo
+                this.form.hawb=response.data.hawb
+                this.form.mawb=response.data.mawb
+                this.form.shipper=response.data.shipper
+                this.form.to1=response.data.to1
+                this.form.to2=response.data.to2
+            }
+            else{
+            _this.$message(
+              {
+                message:response.event,
+                type:response.msg
+              }
+            )
+            }
+
+          },
           sesame(value){
             let _this=this
             var param={mawb:value}

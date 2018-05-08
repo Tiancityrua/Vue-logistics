@@ -49,12 +49,24 @@
         <el-button  type="primary" style="width:206.4px" @click="onSubmit('form')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
         <el-form-item label="               ">
-        <el-button  type="success" style="width:206.4px">{{$t('main.scan')}}</el-button>
+        <el-button  type="success" style="width:206.4px" @click="imageShow=true">{{$t('main.scan')}}</el-button>
         </el-form-item>  
         <el-form-item label="               ">
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button> 
         </el-form-item>          
       </el-form>
+      <el-dialog :visible.sync="imageShow">
+  <el-upload
+  class="upload-demo"
+  drag
+  action="http://localhost:8080/freight/upload/invoice/note"
+  name="file"
+  :on-success="successup"
+  >
+  <i class="el-icon-upload"></i>  
+  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+</el-upload>
+      </el-dialog>
   </div>
 </template>
 
@@ -63,6 +75,7 @@
       name:'insertnote',
       data(){
         return{
+            imageShow:false,
             options:[
                 {
                     value:'delivery',
@@ -116,6 +129,30 @@
         }
       },
       methods:{
+          successup(response){
+            let _this=this
+            this.imageShow=false
+            if(response.msg=='success'){
+            var list=response.data.date.split('/')
+            this.form.date=list[2]+"-"+list[1]+"-"+list[0]
+            this.form.address=response.data.add
+            this.form.hawb=response.data.hawb
+            this.form.pieces=response.data.pieces
+            this.form.weight=response.data.weight
+            this.form.name=response.data.name
+            this.form.signed=response.data.signed
+            var list2=response.data.dated.split('/')
+            this.form.dated=list2[2]+"-"+list2[1]+"-"+list2[0]
+            }
+            else{
+            _this.$message(
+              {
+                message:response.event,
+                type:response.msg
+              }
+            )
+            }
+          },
           onSubmit(formname){
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{

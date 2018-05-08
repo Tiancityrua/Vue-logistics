@@ -116,7 +116,6 @@
       methods:{
         successup(response){
           let _this=this
-          console.log(response)
           this.imageShow=false
           if(response.msg=='success'){
           var list=response.data.date.split("/")
@@ -126,6 +125,7 @@
           this.form.form1.origin=response.data.origin
           this.form.form1.dstn=response.data.dstn
           this.form.form1.nature=response.data.nature
+          this.form.form1.terms=response.data.terms
           }
           else{
             _this.$message(
