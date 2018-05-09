@@ -3,6 +3,10 @@ import axiox from 'axios'
 const ztc = axiox.create({
     baseURL: 'http://localhost:8080'
 })
+const print=axiox.create({
+    baseURL: 'http://localhost:8080',
+    responseType:'arraybuffer'
+})
 ztc.interceptors.response.use(res => {
     if (res.status !== 200 ) {
         return Promise.reject('')
@@ -124,4 +128,8 @@ export const deleteinvoice=params=>{
 
 export const deletenote=params=>{
     return ztc.post(`/freight/delete/invoice/note`,params).then(res=>res.data) 
+}
+
+export const printinvoice=params=>{
+    return print.post(`/freight/print/invoice/invoice`,params)
 }
