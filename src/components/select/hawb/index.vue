@@ -402,9 +402,10 @@
                 <el-table-column
                         fixed="right"
                         label="operating"
-                        width="150">
+                        width="220">
                      <template slot-scope="scope">
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
+                <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
                 <el-button @click="deletehawb(scope.row.hawb)" type="danger" size="small">{{$t('main.delete')}}</el-button>
                      </template>
                 </el-table-column>
@@ -806,6 +807,20 @@
           this.getConsignee()
       },
       methods: {
+              print(row){
+                this.$api.printhawb(row).then(res=>{
+                console.log(row)
+                var blob = new Blob([res.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'})
+                var downloadElement = document.createElement('a');
+                var href = window.URL.createObjectURL(blob); //创建下载的链接
+    　　        downloadElement.href = href;
+                downloadElement.download = 'hawb.xls'
+    　　        document.body.appendChild(downloadElement);
+    　　        downloadElement.click(); //点击下载
+    　　        document.body.removeChild(downloadElement); //下载完成移除元素
+    　　        window.URL.revokeObjectURL(href); //释放掉blob对象 
+                })
+              },
           update(formname){
                 let _this=this;
                 this.$refs[formname].validate((valid)=>{

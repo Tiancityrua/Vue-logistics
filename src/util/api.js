@@ -133,3 +133,7 @@ export const deletenote=params=>{
 export const printinvoice=params=>{
     return print.post(`/freight/print/invoice/invoice`,params)
 }
+
+export const printhawb=params=>{
+    return print.post(`/freight/print/bill/hawb`,params)
+}
