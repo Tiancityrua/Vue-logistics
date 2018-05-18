@@ -5,7 +5,7 @@ import {getToken} from './src/util/auth'
 
 const whitelist=['/login']
 
-router.beforeEach((to,from,next)=>{
+router.beforeEach((to,from,next)=>{ 
     if(getToken()){ 
         if(to.path==='/login'){
             next({path:'/main'})
