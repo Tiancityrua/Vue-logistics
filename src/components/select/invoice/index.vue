@@ -117,7 +117,7 @@
             <el-dialog title="invoice" :visible.sync="dialogFormVisible">
                 <el-form ref="form1"  :model="form1" label-width="125px" inline :rules="rules" size="large" >
         <el-form-item  label="invoice_no" prop="invoiceNo">
-        <el-input type="text" v-model="form1.invoiceNo"></el-input>
+        <el-input type="text" v-model="form1.invoiceNo" disabled="true"></el-input>
         </el-form-item>
       <el-form-item  label="date" prop="date">
             <el-date-picker
@@ -146,7 +146,7 @@
         <el-input type="textarea" autosize v-model="form1.nature"></el-input>
         </el-form-item>
         <el-form-item  label="total" prop="total">
-        <el-input type="text" v-model="form1.total"></el-input>
+        <el-input type="text" v-model.number="form1.total"></el-input>
       </el-form-item> 
          <el-form-item
         v-for="(domain, index) in form2.gridData"
@@ -222,7 +222,8 @@
                      {required: true,trigger: 'change' }
                 ],  
                 total:[
-                     {required: true,trigger: 'change' }
+                     {required: true,trigger: 'change' },
+                    {type: 'number', message: 'total must be number'}
                 ]
             }
 
