@@ -397,7 +397,7 @@
                         width="170">
                      <template slot-scope="scope">
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
-                    <el-button @click="deletemawb(scope.row.mawb)" type="danger" size="small">{{$t('main.delete')}}</el-button> 
+                    <el-button @click="deletemawb(scope.row.mawb,scope.$index,tableData)" type="danger" size="small">{{$t('main.delete')}}</el-button> 
                      </template>
                 </el-table-column>
             </el-table>
@@ -820,7 +820,7 @@
             }
             })
             },
-            deletemawb(mawb){
+            deletemawb(mawb,index,rows){
                 var role=this.$store.getters.role
                 if(role=='manager'){
                 var param={"mawb":mawb}
@@ -834,6 +834,9 @@
                         type: res.msg,
                         message: res.event
                         })
+                        if(res.msg=='success'){ 
+                             rows.splice(index, 1)
+                        }
                 })}).catch(()=>{
                         this.$message({
                         type: 'info',

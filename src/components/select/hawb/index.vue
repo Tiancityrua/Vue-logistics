@@ -406,7 +406,7 @@
                      <template slot-scope="scope">
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
                 <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
-                <el-button @click="deletehawb(scope.row.hawb)" type="danger" size="small">{{$t('main.delete')}}</el-button>
+                <el-button @click="deletehawb(scope.row.hawb,scope.$index,tableData)" type="danger" size="small">{{$t('main.delete')}}</el-button>
                      </template>
                 </el-table-column>
             </el-table>
@@ -866,7 +866,7 @@
                     )
                 }
           },
-          deletehawb(hawb){
+          deletehawb(hawb,index,rows){
                 var role=this.$store.getters.role
                 if(role=='manager'){
                 var param={"hawb":hawb}
@@ -880,6 +880,9 @@
                         type: res.msg,
                         message: res.event
                         })
+                        if(res.msg=='success'){ 
+                             rows.splice(index, 1)
+                        }
                 })}).catch(()=>{
                         this.$message({
                         type: 'info',

@@ -108,7 +108,7 @@
                     </el-popover>
                     <el-button v-popover:detail @click="detail(scope.row.invoiceNo)" type="primary" size="small">{{$t('main.detail')}}</el-button>
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
-                    <el-button @click="deleteinvoice(scope.row.invoiceNo)" type="danger" size="small">{{$t('main.delete')}}</el-button>
+                    <el-button @click="deleteinvoice(scope.row.invoiceNo,scope.$index,tableData)" type="danger" size="small">{{$t('main.delete')}}</el-button>
                     <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
                      </template>
                     </el-table-column>
@@ -321,7 +321,7 @@
             }
             })
           },
-          deleteinvoice(invoiceNo){
+          deleteinvoice(invoiceNo,index,rows){
               var role=this.$store.getters.role
             if(role=='manager'){
               var param={"invoiceNo":invoiceNo}
@@ -335,6 +335,9 @@
                         type: res.msg,
                         message: res.event
                         })
+                        if(res.msg=='success'){
+                             rows.splice(index, 1)
+                        }
                 })}).catch(()=>{
                         this.$message({
                         type: 'info',
