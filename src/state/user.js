@@ -27,12 +27,13 @@ const user={
                login(userinfo).then(response=>{
                     const data=response
                     if(data.code===200){
+                    Message.success('Login Success')
                     setToken(data.token)
                     commit('SET_TOKEN',data.token)
                     resolve()
                     }
                     else{
-                        Message.error('用户名/密码错误！')
+                        Message.error('Username/Password Error')
                         return false
                     }
                 }

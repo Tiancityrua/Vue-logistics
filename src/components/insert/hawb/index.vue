@@ -100,13 +100,13 @@
         <el-input type="text"   v-model="form.noPieces"></el-input>
         </el-form-item>
         <el-form-item  label="gross_weight" prop="grossWeight">
-        <el-input type="text"   v-model="form.grossWeight"></el-input>
+        <el-input type="text"   v-model.number="form.grossWeight"></el-input>
         </el-form-item>
         <el-form-item  label="total_pieces" prop="totalPieces">
         <el-input type="text"   v-model="form.totalPieces"></el-input>
         </el-form-item>
         <el-form-item  label="total_weight" prop="totalWeight">
-        <el-input type="text"   v-model="form.totalWeight"></el-input>
+        <el-input type="text"   v-model.number="form.totalWeight"></el-input>
         </el-form-item>
         <el-form-item  label="kg_lb" prop="kgLb">
         <el-input type="text"   v-model="form.kgLb"></el-input>
@@ -118,7 +118,7 @@
         <el-input type="text"   v-model="form.itemNo"></el-input>
         </el-form-item>
         <el-form-item  label="charge_weight" prop="chargeWeight">
-        <el-input type="text"   v-model="form.chargeWeight"></el-input>
+        <el-input type="text"   v-model.number="form.chargeWeight"></el-input>
         </el-form-item>
         <el-form-item  label="rate" prop="rate">
         <el-input type="text"  v-model="form.rate"></el-input>
@@ -365,13 +365,15 @@
                     {required: true,  message:'no_pieces is required',trigger: 'blur' }
                   ],
                   grossWeight:[
-                    {required: true,  message:'gross_weight is required',trigger: 'blur' }
+                    {required: true,  message:'gross_weight is required',trigger: 'blur' },
+                    {type: 'number', message: 'gross_weight must be number'}
                   ],
                   totalPieces:[
                      {required: true,  message:'total_pieces is required',trigger: 'blur' }
                   ],
                   totalWeight:[
-                     {required: true, message:'total_weight is required', trigger: 'blur' }  
+                     {required: true, message:'total_weight is required', trigger: 'blur' },
+                    {type: 'number', message: 'total_weight must be number'}
                   ],
                   kgLb:[
                     {required: true,  message:'kg_lb is required', trigger: 'blur' }  
@@ -380,7 +382,8 @@
                      {required: true, message:'item_no is required', trigger: 'blur' }    
                   ],
                   chargeWeight:[
-                     {required: true,  message:'charge_weight is required',trigger: 'blur' }   
+                     {required: true,  message:'charge_weight is required',trigger: 'blur' },
+                    {type: 'number', message: 'charge_weight must be number'}   
                   ],
                   rate:[
                      {required: true,  trigger: 'blur' }  

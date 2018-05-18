@@ -402,7 +402,7 @@
                 <el-table-column
                         fixed="right"
                         label="operating"
-                        width="220">
+                        width="240">
                      <template slot-scope="scope">
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
                 <el-button @click="print(scope.row)" type="primary" size="small">{{$t('main.print')}}</el-button>
@@ -808,7 +808,7 @@
       },
       methods: {
               print(row){
-                this.$api.printhawb(row).then(res=>{
+                this.$api.printhawb     (row).then(res=>{
                 console.log(row)
                 var blob = new Blob([res.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'})
                 var downloadElement = document.createElement('a');

@@ -91,7 +91,7 @@
                     <el-table-column
                         fixed="right"
                         label="operating"
-                        width="150">
+                        width="170">
                     <template slot-scope="scope">
                     <el-button @click="editShow(scope.row)" type="primary" size="small">{{$t('main.update')}}</el-button>
                     <el-button @click="deletenote(scope.row.hawb,scope.row.type)" type="danger" size="small">{{$t('main.delete')}}</el-button>

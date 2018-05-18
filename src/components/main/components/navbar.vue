@@ -46,6 +46,10 @@ export default{
          logout(){
            this.$store.dispatch('Logout').then(()=>{
              location.reload()
+            this.$message({
+              message:'Logout success',
+              type:'success'
+            })
            }
            )
          }

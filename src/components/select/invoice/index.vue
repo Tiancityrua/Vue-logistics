@@ -93,7 +93,7 @@
                     <el-table-column
                         fixed="right"
                         label="operating"
-                        width="300">
+                        width="320">
                     <template slot-scope="scope">
                     <el-popover
                     ref="detail"
