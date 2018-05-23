@@ -40,6 +40,24 @@
         <el-form-item  label="total" prop="total">
         <el-input type="text" v-model.number="form1.total"></el-input>
       </el-form-item>
+      <el-form-item label="type" prop="type">
+          <el-select v-model="form1.type" placeholder="select" clearable style="width: 206.4px;">
+            <el-option
+      v-for="item in type"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+            </el-option>
+          </el-select>
+      </el-form-item>
+      <el-form-item  label="pay_date" prop="payDate">
+            <el-date-picker
+                        v-model="form1.payDate"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+      </el-form-item>
         <el-form-item label="                   ">
         <el-button  type="primary" style="width:206.4px" @click="onSubmit('form1','form2')">{{$t('main.submit')}}</el-button>
         </el-form-item>    
@@ -109,10 +127,20 @@
               origin:'',
               dstn:'',
               nature:'',
-              total:''
+              total:'',
+              type:'',
+              payDate:''
           },
           nos:null,
           imageShow:false,
+          type:[{
+            value:'purchases',
+            label:'purchases'
+          },
+          {
+            value:'sales',
+            label:'sales'
+          }],
           rules:{
                 invoiceNo:[
                       {required: true, trigger: 'change' }
@@ -142,6 +170,9 @@
                       {required: true, trigger: 'blur' },
                       {type: 'number', message: 'total must be number'}
                   ],
+                  type:[
+                    {required: true, trigger: 'blur' }
+                  ]
           }
         }
       },
@@ -268,13 +299,12 @@
         },
         getnos(){ 
                   var date=new Date()
-                  var day=date.getDate()
                   var month=date.getMonth()
                   var year=date.getFullYear()
+                  year=year.toString().substring(2,4)
                   month++
-                  day=day<10?'0'+day.toString():day
                   month=month<10?'0'+month.toString():month
-                  var time=year.toString()+month+day
+                  var time=month+year
                   var param={"time":time}
                   this.$api.selectno(param).then(res => {
                   const result = []
@@ -283,8 +313,8 @@
                     label:"DVI"+res.dvi
                   })
                   result.push({
-                    value:"IVD"+res.ivd,
-                    label:"IVD"+res.ivd
+                    value:"INV"+res.inv,
+                    label:"INV"+res.inv
                   })
                   this.nos = result
               }, err => {

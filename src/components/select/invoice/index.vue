@@ -32,6 +32,32 @@
              <el-form-item label="dstn">
                 <el-input v-model="form.dstn"></el-input>
             </el-form-item>
+            <el-form-item label="type">
+        <el-select v-model="form.type" placeholder="select" clearable style="width: 206.4px;">
+            <el-option
+      v-for="item in type"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+            </el-option>
+          </el-select>
+            </el-form-item>
+            <el-form-item label="pay_date_start">
+                        <el-date-picker
+                        v-model="form.date3"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+            </el-form-item>
+            <el-form-item label="pay_date_end">
+                        <el-date-picker
+                        v-model="form.date4"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+            </el-form-item>
             <el-form-item label="         ">
                 <el-button type="primary" @click="onSubmit" style="width: 206.4px;">{{$t('main.search')}}</el-button>
             </el-form-item>
@@ -88,6 +114,16 @@
                     <el-table-column
                         prop="total"
                         label="total"
+                        width="180">
+                    </el-table-column>
+                    <el-table-column
+                        prop="type"
+                        label="type"
+                        width="180">
+                    </el-table-column>
+                    <el-table-column
+                        prop="payDate"
+                        label="pay_date"
                         width="180">
                     </el-table-column>
                     <el-table-column
@@ -148,6 +184,17 @@
         <el-form-item  label="total" prop="total">
         <el-input type="text" v-model.number="form1.total"></el-input>
       </el-form-item> 
+      <el-form-item  label="type" prop="type">
+        <el-input type="text" v-model="form1.type"></el-input>
+      </el-form-item>
+      <el-form-item  label="pay_date" prop="payDate">
+        <el-date-picker
+                        v-model="form1.payDate"
+                        type="date"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd" style="width: 206.4px;">
+            </el-date-picker>
+      </el-form-item>
          <el-form-item
         v-for="(domain, index) in form2.gridData"
         :label="''+index"
@@ -178,7 +225,17 @@
                 billLaden:'',
                 origin:'',
                 dstn:'',
+                date3:'',
+                date4:''
             },
+            type:[{
+            value:'purchases',
+            label:'purchases'
+          },
+          {
+            value:'sales',
+            label:'sales'
+          }],
             tableData:[],
             gridData:[],
             dialogFormVisible:false,
@@ -191,7 +248,9 @@
             origin:'',
             dstn:'',
             nature:'',
-            total:''
+            total:'',
+            type:'',
+            payDate:''
             },
             form2:{
                 gridData:[]
