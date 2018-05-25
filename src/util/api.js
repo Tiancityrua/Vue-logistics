@@ -137,3 +137,7 @@ export const printinvoice=params=>{
 export const printhawb=params=>{
     return print.post(`/freight/print/bill/hawb`,params)
 }
+
+export const purchasesinvoice=params=>{
+    return print.post(`/freight/business/invoice/invoice`,params)
+}

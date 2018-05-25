@@ -12,6 +12,7 @@ export default{
         invoice:'invoice',
         note:'note',
         hawb:'hawb',
+        business:'business',
         selectmawb:'selectmawb',
         insertmawb:'insertmawb',
         selecthawb:'selecthawb',
@@ -19,7 +20,9 @@ export default{
         selectinvoice:'selectinvoice',
         insertinvoice:'insertinvoice',
         selectnote:'selectnote',
-        insertnote:'insertnote'
+        insertnote:'insertnote',
+        businessexcel:'Excel',
+        businesschart:'Chart'
     },
     main:{
         search:'search',

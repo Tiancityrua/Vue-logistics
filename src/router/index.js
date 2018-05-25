@@ -13,6 +13,8 @@ import insertnote from '../components/insert/note/index'
 import selectnote from '../components/select/note/index'
 import inserthawb from '../components/insert/hawb/index'
 import selecthawb from '../components/select/hawb/index'
+import businessexcel from '../components/select/excel/index'
+import businesschart from '../components/select/chart/index'
 
 export const constantRoutermap=[
   {path:'/login',component: login,hidden:true},
@@ -127,6 +129,32 @@ export const asyncRoutermap=[
         name:'selectnote',
         meta:{
           title:'selectnote'
+        }
+      }
+    ]
+  },
+  {
+    path:'/business',
+    component:main,
+    redirect:'/business/excel',
+    meta:{title:'business'},
+    children:[
+      {
+        path:'excel',
+        component:businessexcel,
+        name:'businessexcel',
+        meta:{
+          title:'businessexcel',
+          role:'manager'
+        }
+      },
+      {
+        path:'chart',
+        component:businesschart,
+        name:'businesschart',
+        meta:{
+          title:'businesschart',
+          role:'manager'
         }
       }
     ]

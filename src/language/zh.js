@@ -12,6 +12,7 @@ export default{
         invoice:'发票',
         note:'货单',
         hawb:'分单',
+        business:'业务',
         selectmawb:'主单查找',
         insertmawb:'主单插入',
         selecthawb:'分单查找',
@@ -19,7 +20,9 @@ export default{
         selectinvoice:'发票查找',
         insertinvoice:'发票插入',
         selectnote:'货单查找',
-        insertnote:'货单插入'
+        insertnote:'货单插入',
+        businessexcel:'Excel分析',
+        businesschart:'图表分析'
     },
     main:{
         search:'查找',
