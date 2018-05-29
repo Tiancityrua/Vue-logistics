@@ -290,8 +290,8 @@
     },
     methods:{
         print(row){
+            row.total=row.total.toString()
             this.$api.printinvoice(row).then(res=>{
-                console.log(res)
                 var blob = new Blob([res.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'})
                 var downloadElement = document.createElement('a');
                 var href = window.URL.createObjectURL(blob); //创建下载的链接
@@ -331,6 +331,10 @@
               var param=this.form;
               this.$api.selectinvoice(param).then(res=>{
                   _this.tableData=res.data;
+                  _this.tableData.forEach(function(value,key,arry){
+                      value.total=parseInt(res.data[key].total)
+                  }
+                  )
               })
           },
           detail(invoiceno){

@@ -500,7 +500,7 @@
         <el-input type="text"   v-model="form.noPieces"></el-input>
         </el-form-item>
         <el-form-item  label="gross_weight" prop="grossWeight">
-        <el-input type="text"   v-model.number="form.grossWeight"></el-input>
+        <el-input type="grossWeight"  v-model.number="form.grossWeight"></el-input>
         </el-form-item>
         <el-form-item  label="total_pieces" prop="totalPieces">
         <el-input type="text"   v-model="form.totalPieces"></el-input>
@@ -747,14 +747,14 @@
                     {required: true,  message:'no_pieces is required',trigger: 'change' }
                   ],
                   grossWeight:[
-                    {required: true,  message:'gross_weight is required',trigger: 'blur' },
-                    {type:'number',message: 'gross_weight must be number'}
+                    {required: true,  message:'gross_weight is required',trigger: 'change' },
+                    {type:'number',message: 'gross_weight must be number'}  
                   ],
                   totalPieces:[
                      {required: true,  message:'total_pieces is required',trigger: 'change' }
                   ],
                   totalWeight:[
-                     {required: true, message:'total_weight is required', trigger: 'blur' },
+                     {required: true, message:'total_weight is required', trigger: 'change' },
                     {type:'number',message: 'total_weight must be number'}  
                   ],
                   kgLb:[
@@ -764,7 +764,7 @@
                      {required: true, message:'item_no is required', trigger: 'change' }    
                   ],
                   chargeWeight:[
-                     {required: true,  message:'charge_weight is required',trigger: 'blur' },
+                     {required: true,  message:'charge_weight is required',trigger: 'change' },
                     {type:'number',message: 'charge_weight must be number'}  
                   ],
                   rate:[
@@ -873,6 +873,11 @@
               var param=this.form1;
               this.$api.selectmawb(param).then(res=>{
                   _this.tableData=res.data;
+                  _this.tableData.forEach(function(value,key,arry){
+                      value.grossWeight=parseInt(res.data[key].grossWeight)
+                      value.totalWeight=parseInt(res.data[key].totalWeight)
+                      value.chargeWeight=parseInt(res.data[key].chargeWeight)
+                  })
               })
 
           },

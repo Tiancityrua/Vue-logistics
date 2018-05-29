@@ -811,7 +811,10 @@
       },
       methods: {
               print(row){
-                this.$api.printhawb     (row).then(res=>{
+                row.grossWeight=row.grossWeight.toString()
+                row.totalWeight=row.totalWeight.toString()
+                row.chargeWeight=row.chargeWeight.toString()
+                this.$api.printhawb(row).then(res=>{
                 console.log(row)
                 var blob = new Blob([res.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'})
                 var downloadElement = document.createElement('a');
@@ -904,6 +907,11 @@
               var param=this.form1;
               this.$api.selecthawb(param).then(res=>{
                   _this.tableData=res.data;
+                   _this.tableData.forEach(function(value,key,arry){
+                      value.grossWeight=parseInt(res.data[key].grossWeight)
+                      value.totalWeight=parseInt(res.data[key].totalWeight)
+                      value.chargeWeight=parseInt(res.data[key].chargeWeight)
+                  })
               })
 
           },
