@@ -1,33 +1,50 @@
 <template>
     <div class="app-container">
-        <el-button @click="print()" type="primary" size="large">{{$t('main.print')}}</el-button>
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <el-input style="width: 325px;" v-model="baryear"></el-input>
+        <el-button style="width: 100px;" type="primary" size="large" @click="month(baryear)">年/月报告</el-button>
+        <div class="chart-wrapper">
+          <bar-chart :chartdata="this.bardata"></bar-chart>
+        </div>
+      </el-col>
+    </el-row>
     </div>
 </template>
 
 <script>
+import BarChart from './detail/purchases'
     export default{
-        name:'businessexcel',
+        name:'businesschart',
+        components:{
+            BarChart
+        },
         data(){
             return{
-                
+                baryear:'',
+                bardata:{}
             }
         },
         methods:{
-            print(){
-            this.$api.purchasesinvoice().then(res=>{
-                console.log(res)
-                var blob = new Blob([res.data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'})
-                var downloadElement = document.createElement('a');
-                var href = window.URL.createObjectURL(blob); //创建下载的链接
-    　　        downloadElement.href = href;
-                downloadElement.download = 'invoice.xls'
-    　　        document.body.appendChild(downloadElement);
-    　　        downloadElement.click(); //点击下载
-    　　        document.body.removeChild(downloadElement); //下载完成移除元素
-    　　        window.URL.revokeObjectURL(href); //释放掉blob对象 
+            month(baryear){
+                let _this=this
+                var xdata=[]
+                var ydata=[]
+                var param=baryear==''?{}:{"year":baryear}
+                this.$api.monthinvoice(param).then(res=>{
+        res.data.forEach(element => {
+            xdata.push(element.month)
+            debugger
+            ydata.push(element.sum)
+        });
+        _this.bardata={
+            xdata:xdata,
+            ydata:ydata
+        }        
+      }
+                )
+                debugger
             }
-            )
-        },
         }
     }
 </script>
