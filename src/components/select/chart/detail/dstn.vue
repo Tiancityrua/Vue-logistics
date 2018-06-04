@@ -7,8 +7,6 @@ import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import { debounce } from '../../../../util/index.js'
 
-const animationDuration = 6000
-
 export default {
   props: {
     className: {
@@ -31,7 +29,7 @@ export default {
     return {
       chart: null,
       xdata:[],
-      ydata:[],
+      data:[],
       params:{}
     }
   },
@@ -43,15 +41,15 @@ export default {
       }
     }, 100)
     window.addEventListener('resize', this.__resizeHanlder)
-         let _this=this
-        this.$api.monthinvoice(_this.params).then(res=>{
+    let _this=this
+        this.$api.dstninvoice(_this.params).then(res=>{
         res.data.forEach(element => {
-            _this.xdata.push(element.year)
-            _this.ydata.push(element.sum)
+            _this.xdata.push(element.name)
+            _this.data.push(element)
         });
         _this.chartdata={
             xdata:_this.xdata,
-            ydata:_this.ydata
+            data:_this.data
         }        
       }
       )
@@ -64,7 +62,7 @@ export default {
     this.chart.dispose()
     this.chart = null
   },
-  watch:{
+    watch:{
     chartdata: {
       deep: true,
       handler(val) {
@@ -74,46 +72,33 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$el, 'macarons')    
+      this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartdata)
     },
-    setOptions({xdata,ydata}={}){
-        this.chart.setOption({
+    setOptions({xdata,data}={}){
+      this.chart.setOption({
         tooltip: {
-          trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-          }
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
-        grid: {
-          top: 10,
-          left: '2%',
-          right: '2%',
-          bottom: '3%',
-          containLabel: true
+        legend: {
+          left: 'center',
+          bottom: '10',
+          data: xdata
         },
-        xAxis: [{
-          type: 'category',
-          data:xdata,
-          axisTick: {
-            alignWithLabel: true
+        calculable: true,
+        series: [
+          {
+            name: '目的地占比',
+            type: 'pie',
+            roseType: 'radius',
+            radius: [15, 95],
+            center: ['50%', '38%'],
+            data: data,
+            animationEasing: 'cubicInOut',
+            animationDuration: 2600
           }
-        }],
-        yAxis: [{
-          type: 'value',
-          axisTick: {
-            show: false
-          }
-        }],
-        series: [{
-          name: '营业额',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
-          data: ydata,
-          animationDuration
-        }]
-        
+        ]
       })
     }
   }

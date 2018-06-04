@@ -153,3 +153,15 @@ export const creditorsinvoice=params=>{
 export const monthinvoice=params=>{
     return ztc.post(`/freight/business/invoice/month`,params)
 }
+
+export const nameinvoice=params=>{
+    return ztc.post(`/freight/business/invoice/name`,params)
+}
+
+export const dstninvoice=params=>{
+    return ztc.post(`/freight/business/invoice/dstn`,params)
+}
+
+export const origininvoice=params=>{
+    return ztc.post(`/freight/business/invoice/origin`,params)
+}
