@@ -21,7 +21,7 @@ export default {
       type: String,
       default: '300px'
     },
-    chartdata:{
+    chartdata2:{
         type:Object
     }
   },
@@ -47,7 +47,7 @@ export default {
             _this.xdata.push(element.name)
             _this.data.push(element)
         });
-        _this.chartdata={
+        _this.chartdata2={
             xdata:_this.xdata,
             data:_this.data
         }        
@@ -63,17 +63,22 @@ export default {
     this.chart = null
   },
     watch:{
-    chartdata: {
-      deep: true,
+    chartdata2: {
       handler(val) {
+        debugger
+        if(val.xdata!=null){
         this.setOptions(val)
+        }
+        else{
+          
+        }
       }
     }
   },
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartdata)
+      this.setOptions(this.chartdata2)
     },
     setOptions({xdata,data}={}){
       this.chart.setOption({

@@ -55,7 +55,7 @@
         <el-button  type="danger" style="width:206.4px" @click="resetForm('form')">{{$t('main.reset')}}</el-button> 
         </el-form-item>          
       </el-form>
-      <el-dialog :visible.sync="imageShow">
+      <el-dialog :visible.sync="imageShow" width="400px">
   <el-upload
   class="upload-demo"
   drag
@@ -69,6 +69,7 @@
       </el-dialog>
   </div>
 </template>
+
 
 <script>
     export default{

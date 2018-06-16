@@ -87,7 +87,7 @@
     <el-button @click="addDomain()">{{$t('main.newitem')}}</el-button>
   </el-form-item>
       </el-form>
-      <el-dialog :visible.sync="imageShow">
+      <el-dialog :visible.sync="imageShow" width="400px">
   <el-upload
   class="upload-demo"
   drag
@@ -102,7 +102,6 @@
   </div>
 </template>
 <style lang="less">
-
 </style>
 
 <script>

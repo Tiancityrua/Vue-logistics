@@ -35,6 +35,9 @@ export default{
         print:'打印',
         detail:"详情",
         confirm:'确认',
-        cancel:'取消'
+        cancel:'取消',
+        purchases:'营业额统计',
+        debtors:'客户欠款统计',
+        creditors:'公司欠款统计'
     }
 }

@@ -5,17 +5,17 @@
             <el-input  v-model="form1.year" placeholder="year"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button @click="print1(form1.year)" type="primary" size="large">{{$t('main.print')}}</el-button>
+            <el-button @click="print1(form1.year)" type="primary" size="large">{{$t('main.purchases')}}</el-button>
         </el-form-item>
         </el-form>
         <el-form>
         <el-form-item>
-            <el-button @click="print2()" type="primary" size="large">{{$t('main.print')}}</el-button>
+            <el-button @click="print2()" type="primary" size="large">{{$t('main.debtors')}}</el-button>
         </el-form-item>
         </el-form>  
         <el-form>
         <el-form-item>
-            <el-button @click="print3()" type="primary" size="large">{{$t('main.print')}}</el-button>
+            <el-button @click="print3()" type="primary" size="large">{{$t('main.creditors')}}</el-button>
         </el-form-item>
         </el-form>  
     </div>

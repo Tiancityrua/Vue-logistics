@@ -21,7 +21,7 @@ export default {
       type: String,
       default: '300px'
     },
-    chartdata:{
+    chartdata4:{
         type:Object
     }
   },
@@ -45,10 +45,9 @@ export default {
         this.$api.origininvoice(_this.params).then(res=>{
         res.data.forEach(element => {
             _this.xdata.push(element.name)
-            debugger
             _this.data.push(element)
         });
-        _this.chartdata={
+        _this.chartdata4={
             xdata:_this.xdata,
             data:_this.data
         }        
@@ -64,17 +63,22 @@ export default {
     this.chart = null
   },
     watch:{
-    chartdata: {
-      deep: true,
+    chartdata4: {
       handler(val) {
+        debugger
+        if(val.xdata!=null){
         this.setOptions(val)
+        }
+        else{
+          
+        }
       }
     }
   },
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartdata)
+      this.setOptions(this.chartdata4)
     },
     setOptions({xdata,data}={}){
       this.chart.setOption({

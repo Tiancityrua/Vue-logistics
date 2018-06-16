@@ -35,6 +35,9 @@ export default{
         print:'print',
         detail:"detail",
         confirm:'confirm',
-        cancel:'cancel'
+        cancel:'cancel',
+        purchases:'purchases',
+        debtors:'debtors',
+        creditors:'creditors'
     }
 }
